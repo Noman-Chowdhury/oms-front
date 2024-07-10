@@ -1,5 +1,5 @@
 <script setup>
-import vueApexcharts from "vue3-apexcharts/src";
+import vueApexcharts from "vue3-apexcharts";
 import {ref} from "vue";
 const audienceOverviewSeries = ref([{
   name: 'Stock',

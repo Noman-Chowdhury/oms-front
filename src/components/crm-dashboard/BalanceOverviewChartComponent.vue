@@ -1,6 +1,6 @@
 <script setup>
 import {ref} from "vue";
-import vueApexcharts from "vue3-apexcharts/src";
+import vueApexcharts from "vue3-apexcharts";
 const balanceOverviewSeries = ref([{
   name: 'Stock',
   color: '#0D99FF',
