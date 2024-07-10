@@ -1,0 +1,22 @@
+{
+  "locale": {
+    "en": "EN",
+    "ru": "RU",
+    "bn": "BN"
+  },
+  "nav": {
+    "language": "Language",
+    "view_website": "View Website"
+  },
+  "dashboard": {
+    "ecommerce_dashboard": "eCommerce Dashboard",
+    "crm_dashboard": "CRM Dashboard",
+    "hr_dashboard": "HR Dashboard"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "ecommerce": "eCommerce",
+    "crm": "CRM",
+    "hrm": "HRM"
+  }
+}

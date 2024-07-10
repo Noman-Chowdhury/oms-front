@@ -1,0 +1,22 @@
+{
+    "locale": {
+      "en": "EN",
+      "ru": "RU",
+      "bn": "BN"
+    },
+    "nav": {
+      "language": "ভাষা",
+      "view_website": "ওয়েবসাইট দেখুন"
+    },
+    "dashboard": {
+      "ecommerce_dashboard": "ইকমার্স ড্যাশবোর্ড",
+      "crm_dashboard": "CRM ড্যাশবোর্ড",
+      "hr_dashboard": "এইচআর ড্যাশবোর্ড"
+    },
+    "sidebar": {
+      "dashboard": "ড্যাশবোর্ড",
+      "ecommerce": "ইকমার্স",
+      "crm": "সিআরএম",
+      "hrm": "এইচআরএম"
+    }
+  }

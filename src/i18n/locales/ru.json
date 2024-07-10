@@ -1,0 +1,22 @@
+{
+  "locale": {
+    "en": "EN",
+    "ru": "RU",
+    "bn": "BN"
+  },
+  "nav": {
+    "language": "Язык",
+    "view_website": "Посмотреть веб-сайт"
+  },
+  "dashboard": {
+    "ecommerce_dashboard": "Панель управления электронной коммерцией",
+    "crm_dashboard": "Панель управления CRM",
+    "hr_dashboard": "HR-панель"
+  },
+  "sidebar": {
+    "dashboard": "Панель приборов",
+    "ecommerce": "электронная коммерция",
+    "crm": "CRM",
+    "hrm": "HRM"
+  }
+}
