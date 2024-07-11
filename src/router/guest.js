@@ -139,4 +139,10 @@ export const guestRoutes = [
         name: 'reset_password_mail',
         meta: {layout: 'BlankLayout'}
     },
+    {
+        path: '/register',
+        component: () => import('@/views/pages/authentication/MultiStepSignup.vue'),
+        name: 'register',
+        meta: {layout: 'GuestLayout'}
+    }
 ];
