@@ -24,7 +24,7 @@ const steps = ref([
   },
   {
     step: 3,
-    title: 'PLAN',
+    title: 'SELECT YOUR PLAN',
     subTitle: 'Select You Version',
   },
   {
@@ -140,7 +140,7 @@ onMounted(() => {
       <div class="step-content-wrap">
         <div class="step-content">
           <div class="step-heading">
-            <h4 class="step-title">Company Information</h4>
+            <h4 class="step-title">COMPANY INFORMATION</h4>
             <!--            <span>For further details, visit our <a href="#">Help Page</a>.</span>-->
           </div>
           <div class="account-info-wrap">
@@ -180,7 +180,7 @@ onMounted(() => {
       <div class="step-content-wrap">
         <div class="step-content">
           <div class="step-heading">
-            <h4 class="step-title">Company Details</h4>
+            <h4 class="step-title">COMPANY DETAILS</h4>
             <!--            <span>For further details, visit our <a href="#">Help Page</a>.</span>-->
           </div>
           <div class="business-details-wrap">
@@ -258,7 +258,7 @@ onMounted(() => {
       <div class="step-content-wrap">
         <div class="step-content">
           <div class="step-heading">
-            <h4 class="step-title">Plan</h4>
+            <h4 class="step-title">SELECT YOUR PLAN</h4>
             <!--            <span>For further details, visit our <a href="#">Help Page</a>.</span>-->
           </div>
           <div class="account-types">
@@ -311,7 +311,7 @@ onMounted(() => {
       <div class="step-content-wrap">
         <div class="step-content mb-0">
           <div class="step-heading">
-            <h4 class="step-title">Thank You!</h4>
+            <h4 class="step-title">COMPLETE</h4>
             <!--            <span>For further details, visit our <a href="#">Help Page</a>.</span>-->
           </div>
           <div class="success-wrap">

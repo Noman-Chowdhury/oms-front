@@ -5486,7 +5486,7 @@ pre .punctuation {
   left: 0;
   width: 100%;
   height: 100%;
-  background: url(../images/auth-bg.png) center center no-repeat;
+  background: #d3e7f0;
   background-size: cover;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -10753,7 +10753,7 @@ a.ck.ck-button:focus {
   opacity: 0.08;
 }
 .light-theme .main-content.login-panel {
-  background: url(../images/auth-bg-light.png) center center no-repeat;
+  background: #d3e7f0;
   background-size: cover;
 }
 .light-theme .main-content.login-panel::after {
