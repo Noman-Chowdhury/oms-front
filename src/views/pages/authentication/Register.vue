@@ -100,9 +100,7 @@ const finish = async () => {
       isLoading.value = false
     })
   } catch (error) {
-    console.error('An error occurred:', error);
-  } finally {
-
+    $toast.error('Something went wrong!.');
   }
 }
 
@@ -327,7 +325,7 @@ onMounted(() => {
           </div>
           <div class="success-wrap">
             <p class="bg-success bg-opacity-50 border border-success rounded-1 py-2 px-3 fs-14">You will get an
-              confirmation email soon.</p>
+              confirmation email soon after click on finish.</p>
             <div class="d-flex justify-content-center">
               <svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
                    xml:space="preserve" class="check-mark" width="200" height="200" viewBox="0 0 300 300">
