@@ -1,6 +1,6 @@
 import {ref} from "vue";
 
-export const sidebarMenus = ref([
+export const sidebarMenu = ref([
     {
         menu_name: 'sidebar.dashboard',
         menus: [

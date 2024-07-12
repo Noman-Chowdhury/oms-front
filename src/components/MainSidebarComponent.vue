@@ -7,7 +7,9 @@ import {useRoute} from "vue-router";
 import SidebarMenuComponent from "@/components/menu/SidebarMenuComponent.vue";
 import {vClickOutside} from "@/composable/outsideClicker";
 import {mainSidebarBg, useSidebarCurrentBG} from "@/composable/mainSidebarBackgroundSetting"
-import {sidebarMenus} from "@/composable/sidebarMenu"
+import {sidebarMenu} from "@/composable/sidebarMenu"
+import {adminSidebarMenus} from "@/composable/adminSidebarMenu"
+
 import {currentNavbarSize, hoverableMenu, hoverableSidebar, hoverableOutSidebar} from "@/composable/navbarSizeSetting"
 
 import {layoutPosition} from "@/composable/navPositionSetting";
@@ -18,6 +20,8 @@ const currentRoute = ref('');
 const isSubmenus = ref(false);
 
 const openedMenu = ref(null);
+
+const sidebarMenus = adminSidebarMenus
 
 const findMenuByName = ((name) => {
   if (layoutPosition.value === 'twoColumn') {
@@ -177,11 +181,11 @@ onMounted(() => {
               </ul>
             </template>
           </li>
-          <li class="help-center">
-            <h3>Help Center</h3>
-            <p>We're an award-winning, forward thinking</p>
-            <a href="#" class="btn btn-sm btn-light">Go to Help Center</a>
-          </li>
+<!--          <li class="help-center">-->
+<!--            <h3>Help Center</h3>-->
+<!--            <p>We're an award-winning, forward thinking</p>-->
+<!--            <a href="#" class="btn btn-sm btn-light">Go to Help Center</a>-->
+<!--          </li>-->
       </div>
     </div>
   </div>
