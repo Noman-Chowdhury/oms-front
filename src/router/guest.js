@@ -141,7 +141,7 @@ export const guestRoutes = [
     },
     {
         path: '/register',
-        component: () => import('@/views/pages/authentication/MultiStepSignup.vue'),
+        component: () => import('@/views/pages/authentication/Register.vue'),
         name: 'register',
         meta: {layout: 'GuestLayout'}
     }
