@@ -1,0 +1,22 @@
+export const categories = [
+    'IT',
+    'Food & Beverage',
+    'Retail',
+    'Manufacturing',
+    'Healthcare',
+    'Finance',
+    'Education',
+    'Transportation',
+    'Real Estate',
+    'Entertainment',
+    'Construction',
+    'Consulting',
+    'Marketing',
+    'Non-Profit',
+    'Agriculture',
+    'Energy',
+    'Hospitality',
+    'Legal Services',
+    'Telecommunications',
+    'Media'
+];
