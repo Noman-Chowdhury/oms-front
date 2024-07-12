@@ -94,6 +94,7 @@ const finish = async () => {
           }
         }
       } else {
+        $toast.error('Something went wrong!.');
         console.error('An error occurred:', error);
       }
     }).finally(() => {
