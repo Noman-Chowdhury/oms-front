@@ -247,9 +247,9 @@ provide('app:layout', layout.value)
       />
       <!-- profile right sidebar end -->
 
-      <div class="right-sidebar-btn d-lg-block d-none">
-        <button class="header-btn theme-settings-btn" @click="toggleSidebar"><i class="fa-light fa-gear"></i></button>
-      </div>
+<!--      <div class="right-sidebar-btn d-lg-block d-none">-->
+<!--        <button class="header-btn theme-settings-btn" @click="toggleSidebar"><i class="fa-light fa-gear"></i></button>-->
+<!--      </div>-->
 
       <!-- right sidebar start -->
       <RightSidebarComponent v-show="isPartials"

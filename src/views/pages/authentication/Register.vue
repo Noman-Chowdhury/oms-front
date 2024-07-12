@@ -14,22 +14,22 @@ const isLoading = ref(false);
 const steps = ref([
   {
     step: 1,
-    title: 'Step 1',
+    title: 'COMPANY INFORMATION',
     subTitle: 'Select your Company Info',
   },
   {
     step: 2,
-    title: 'Step 2',
+    title: 'COMPANY DETAILS',
     subTitle: 'Setup your Company Details',
   },
   {
     step: 3,
-    title: 'Step 3',
+    title: 'PLAN',
     subTitle: 'Select You Version',
   },
   {
     step: 4,
-    title: 'Step 4',
+    title: 'COMPLETE',
     subTitle: 'Finalize',
   },
 ]);
@@ -118,9 +118,9 @@ onMounted(() => {
 
   <div class="steps-sidebar bg-primary">
     <div class="sidebar-content">
-      <div class="sidebar-logo">
+      <div class="sidebar-logo text-center">
         <router-link :to="{name: 'dashboard_index'}">
-          <img src="@/assets/images/logo-big.png" alt="Logo">
+          <img src="@/assets/images/oms-logo-big.png" alt="Logo">
         </router-link>
       </div>
       <ul class="step-list scrollable">
@@ -140,47 +140,37 @@ onMounted(() => {
       <div class="step-content-wrap">
         <div class="step-content">
           <div class="step-heading">
-            <h4 class="step-title">Step 1</h4>
+            <h4 class="step-title">Company Information</h4>
             <!--            <span>For further details, visit our <a href="#">Help Page</a>.</span>-->
           </div>
           <div class="account-info-wrap">
             <form class="row">
               <div class="col-12">
-                <div class="team-title">
-                  <span class="account-info-title">Company Name <RequiredInputIcon/></span>
-                  <input type="text" class="form-control" placeholder="Enter Name" v-model="company.name">
-                </div>
+                <label for="" class="form-label">Company Name <RequiredInputIcon/></label>
+                <input type="text" class="form-control" placeholder="Enter Name" v-model="company.name">
               </div>
               <div class="col-6">
-                <div class="team-title">
-                  <span class="account-info-title">Email <RequiredInputIcon/></span>
-                  <input type="email" class="form-control" placeholder="Enter Email" v-model="company.email">
-                </div>
+                <label for="" class="form-label">Email <RequiredInputIcon/></label>
+                <input type="email" class="form-control" placeholder="Enter Email" v-model="company.email">
               </div>
               <div class="col-6">
-                <div class="team-title">
-                  <span class="account-info-title">Phone Number <RequiredInputIcon/></span>
-                  <input type="text" class="form-control" placeholder="Enter Number" v-model="company.phone_number">
-                </div>
+                <label for="" class="form-label">Phone Number <RequiredInputIcon/></label>
+                <input type="text" class="form-control" placeholder="Enter Number" v-model="company.phone_number">
               </div>
               <div class="col-6">
-                <div class="team-title">
-                  <span class="account-info-title">Country <RequiredInputIcon/></span>
-                  <select class="form-control form-select" v-model="company.country">
-                    <option value="bangladesh">Bangladesh</option>
-                  </select>
-                </div>
+                <label for="" class="form-label">Country <RequiredInputIcon/></label>
+                <select class="form-control form-select" v-model="company.country">
+                  <option value="bangladesh">Bangladesh</option>
+                </select>
               </div>
               <div class="col-6">
-                <div class="team-title">
-                  <span class="account-info-title">Website</span>
-                  <input type="text" class="form-control" placeholder="Enter Number" v-model="company.url">
-                </div>
+                <label for="" class="form-label">Website</label>
+                <input type="text" class="form-control" placeholder="Enter Number" v-model="company.url">
               </div>
             </form>
           </div>
         </div>
-        <div class="btn-box w-100 d-flex justify-content-between">
+        <div class="btn-box w-100 d-flex justify-content-end">
           <button class="btn btn-sm btn-primary next-button px-3" @click="nextStep(0)">Continue <i
               class="fa-light fa-arrow-right"></i></button>
         </div>
@@ -190,7 +180,7 @@ onMounted(() => {
       <div class="step-content-wrap">
         <div class="step-content">
           <div class="step-heading">
-            <h4 class="step-title">Step 2</h4>
+            <h4 class="step-title">Company Details</h4>
             <!--            <span>For further details, visit our <a href="#">Help Page</a>.</span>-->
           </div>
           <div class="business-details-wrap">
@@ -268,7 +258,7 @@ onMounted(() => {
       <div class="step-content-wrap">
         <div class="step-content">
           <div class="step-heading">
-            <h4 class="step-title">Step 3</h4>
+            <h4 class="step-title">Plan</h4>
             <!--            <span>For further details, visit our <a href="#">Help Page</a>.</span>-->
           </div>
           <div class="account-types">

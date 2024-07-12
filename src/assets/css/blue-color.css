@@ -113,7 +113,7 @@ input {
 }
 
 .bg-primary {
-  background-color: #0D99FF !important;
+  background-color: #034f75 !important;
 }
 
 .text-primary {
@@ -121,7 +121,7 @@ input {
 }
 
 .btn-group .btn-primary {
-  border-color: #0072b7;
+  border-color: #034f75;
 }
 
 .btn.show {
@@ -130,20 +130,20 @@ input {
 }
 
 .btn-primary {
-  background: #0D99FF;
-  border: 1px solid #0D99FF;
+  background: #034f75;
+  border: 1px solid #034f75;
 }
 .btn-primary:hover {
-  background: #0072b7;
-  border-color: #0D99FF;
+  background: #034f75;
+  border-color: #034f75;
 }
 .btn-primary.current, .btn-primary.active {
-  background-color: #0072b7;
-  border-color: #0D99FF;
+  background-color: #034f75;
+  border-color: #034f75;
 }
 .btn-primary:active, .btn-primary:focus {
-  background-color: #0072b7 !important;
-  border-color: #0D99FF !important;
+  background-color: #034f75 !important;
+  border-color: #034f75 !important;
   -webkit-box-shadow: 0 0 0 0.25rem rgba(0, 114, 183, 0.3);
           box-shadow: 0 0 0 0.25rem rgba(0, 114, 183, 0.3);
 }
