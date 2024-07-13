@@ -1,30 +1,39 @@
 <script setup>
 import {ref} from "vue";
-import {axiosInstance} from "@/plugins/axiosInstance";
+import {userAxiosInstance} from "@/plugins/axiosInstance";
 import {useToast} from "vue-toast-notification";
 import Loader from "@/components/Loader.vue";
+import {useRouter} from "vue-router";
+
 const $toast = useToast({position: 'top-right'});
+const router = useRouter();
 const isLoading = ref(false);
 
 const isPasswordShow = ref(false);
 
 const credentials = ref({
   email: '',
-  password: ''
+  password: '',
+  remember_me: '',
 })
 
 const login = async () => {
+  event.preventDefault()
   isLoading.value = true;
   try {
-    axiosInstance.post('/api/admin/login', credentials.value)
-        .then(() => {
-          $toast.success('Successfully Created')
+    userAxiosInstance.post('/login', credentials.value)
+        .then((response) => {
+          const resData = response.data;
+          localStorage.setItem('_u_t', resData.data.access_token);
+          localStorage.setItem('_u', JSON.stringify(resData.data.userData));
+          $toast.success(resData.message);
+          router.push({name: 'dashboard_index'})
         }).catch((error) => {
       if (error.response && error.response.status === 422) {
         const errors = error.response.data.errors;
         for (const field in errors) {
           if (errors.hasOwnProperty(field)) {
-            $toast.error(errors[field][0]);
+            $toast.error(errors[field]);
           }
         }
       } else {
@@ -56,11 +65,12 @@ const login = async () => {
       <form>
         <div class="input-group mb-25">
           <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
-          <input type="text" class="form-control" placeholder="Username or email address">
+          <input type="text" class="form-control" placeholder="Username or email address" v-model="credentials.email">
         </div>
         <div class="input-group mb-20">
           <span class="input-group-text"><i class="fa-regular fa-lock"></i></span>
-          <input :type="[isPasswordShow ? 'text' : 'password']" class="form-control rounded-end" placeholder="Password">
+          <input :type="[isPasswordShow ? 'text' : 'password']" class="form-control rounded-end" placeholder="Password"
+                 v-model="credentials.password">
           <a role="button" class="password-show" @click="isPasswordShow = !isPasswordShow"><i class="fa-duotone"
                                                                                               :class="[isPasswordShow ? 'fa-eye-slash':'fa-eye']"></i></a>
         </div>
@@ -73,7 +83,9 @@ const login = async () => {
           </div>
           <router-link to="/reset-password" class="text-white fs-14">Forgot Password?</router-link>
         </div>
-        <button class="btn btn-primary w-100 login-btn">Login</button>
+        <div class="text-center">
+          <button class="btn btn-primary login-btn" @click="login">Login</button>
+        </div>
       </form>
     </div>
   </div>

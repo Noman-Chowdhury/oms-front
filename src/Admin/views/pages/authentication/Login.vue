@@ -21,7 +21,7 @@ const login = async () => {
   event.preventDefault()
   isLoading.value = true;
   try {
-    adminAxiosInstance.post('/api/admin/login', credentials.value)
+    adminAxiosInstance.post('/login', credentials.value)
         .then((response) => {
           const resData = response.data;
           localStorage.setItem('_a_t', resData.data.access_token);
@@ -84,7 +84,7 @@ const login = async () => {
           <router-link to="/reset-password" class="text-white fs-14">Forgot Password?</router-link>
         </div>
         <div class="text-center">
-          <button class="btn btn-primary w-100 login-btn rounded" @click="login">Login</button>
+          <button class="btn btn-primary login-btn" @click="login">Login</button>
         </div>
       </form>
     </div>

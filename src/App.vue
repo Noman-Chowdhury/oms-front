@@ -207,7 +207,7 @@ watch(currentActiveTheme, () => {
 router.beforeEach(async (to, from, next) => {
   const handleUserCheck = async () => {
     try {
-      const response = await userAxiosInstance.get('/user/profile');
+      const response = await userAxiosInstance.get('/profile');
       if (response.data.success) {
         return true;
       } else {
@@ -222,7 +222,7 @@ router.beforeEach(async (to, from, next) => {
 
   const handleAdminCheck = async () => {
     try {
-      const response = await adminAxiosInstance.get('/admin/profile');
+      const response = await adminAxiosInstance.get('/profile');
       if (response.data.success) {
         return true;
       } else {
@@ -245,7 +245,7 @@ router.beforeEach(async (to, from, next) => {
   } else if (to.matched.some(record => record.meta.isUser)) {
     const isUser = await handleUserCheck();
     if (isUser) {
-      next({ path: "/" });
+      next();
     } else {
       next({ path: "/login", query: { redirect: to.fullPath } });
     }

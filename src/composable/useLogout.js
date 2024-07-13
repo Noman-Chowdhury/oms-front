@@ -13,7 +13,7 @@ export function useLogout() {
         event.preventDefault();
         isLoading.value = true;
         if (route.meta.isAdmin) {
-            adminAxiosInstance.post('/admin/logout').then((response) => {
+            adminAxiosInstance.post('/logout').then((response) => {
                 localStorage.removeItem("_a_t");
                 localStorage.removeItem("_a_u");
                 router.push('/admin/login');
@@ -24,7 +24,7 @@ export function useLogout() {
                 isLoading.value = false;
             });
         } else {
-            userAxiosInstance.post('/user/logout').then((response) => {
+            userAxiosInstance.post('/logout').then((response) => {
                 localStorage.removeItem("_u_t");
                 localStorage.removeItem("_u");
                 router.push('/login');

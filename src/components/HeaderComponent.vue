@@ -115,7 +115,7 @@ onUnmounted(() => {
         <div v-if="layoutPosition !== 'horizontal'" class="nav-close-btn">
           <button id="navClose" @click="onNavCloseClick"><i class="fa-light fa-bars-sort"></i></button>
         </div>
-        <a href="#" target="_blank" class="btn btn-sm btn-primary site-view-btn"><i class="fa-light fa-globe me-1"></i> <span>{{ $t('nav.view_website') }}</span></a>
+<!--        <a href="#" target="_blank" class="btn btn-sm btn-primary site-view-btn"><i class="fa-light fa-globe me-1"></i> <span>{{ $t('nav.view_website') }}</span></a>-->
       </div>
       <div class="col-4 d-lg-none">
         <div class="mobile-logo">

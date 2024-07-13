@@ -11,7 +11,7 @@ export const pagesRoutes = [
         path: '/crm-dashboard',
         component: () => import('@/views/dashboard/CrmDashboard.vue'),
         name: 'crm_dashboard',
-        meta: { layout: 'AppLayout', isPartials: true },
+        meta: { layout: 'AppLayout', isPartials: true, isUser: true },
     },
     {
         path: '/hrm-dashboard',

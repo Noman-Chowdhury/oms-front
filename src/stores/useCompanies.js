@@ -16,7 +16,7 @@ export const useCompanyStore = defineStore('company', {
     actions: {
         async fetchCompanies() {
             this.loading = true;
-            adminAxiosInstance.get('/admin/companies')
+            adminAxiosInstance.get('/companies')
                 .then((response) => {
                     const resData = response.data
                     this.companies = resData.data.companies.map(company => ({
@@ -33,7 +33,7 @@ export const useCompanyStore = defineStore('company', {
         async approveCompany(companyId) {
             try {
                 this.loading = true;
-                await adminAxiosInstance.post(`/admin/companies/${companyId}/approve`)
+                await adminAxiosInstance.post(`/companies/${companyId}/approve`)
                     .then((response) => {
                         $toast.success(response.data.message)
                         const company = this.companies.find(c => c.id === companyId);

@@ -4,15 +4,22 @@
 }
 
 .login-body {
-    .top{
+    .top {
         background-color: #034f75;
         text-align: center;
     }
 }
 
-.light-theme .main-content .login-body .bottom .panel-title{
+.light-theme .main-content .login-body .bottom .panel-title {
     color: #034f75;
 }
-.main-content .login-body .login-btn::after{
+
+.main-content .login-body .login-btn {
+    background: #034f75;
+    width: 50%;
+    border-radius: 20px;
+}
+
+.main-content .login-body .login-btn::after {
     background: #034f75;
 }
