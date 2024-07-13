@@ -1,6 +1,6 @@
 <script setup>
 import {ref} from "vue";
-import {axiosInstance} from "@/plugins/axiosInstance";
+import {adminAxiosInstance, axiosInstance} from "@/plugins/axiosInstance";
 import {useToast} from "vue-toast-notification";
 import Loader from "@/components/Loader.vue";
 import {useRouter} from "vue-router";
@@ -21,7 +21,7 @@ const login = async () => {
   event.preventDefault()
   isLoading.value = true;
   try {
-    axiosInstance.post('/api/admin/login', credentials.value)
+    adminAxiosInstance.post('/api/admin/login', credentials.value)
         .then((response) => {
           const resData = response.data;
           localStorage.setItem('_a_t', resData.data.access_token);
