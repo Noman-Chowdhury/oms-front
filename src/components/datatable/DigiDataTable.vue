@@ -185,7 +185,7 @@ defineExpose({
           <component :is="row[column.key]"></component>
         </template>
         <template v-if="column.type && column.type === 'component' && row[column.key].component">
-          <component :is="row[column.key].component" :data="row[column.key].data"></component>
+          <component :is="row[column.key].component" :data="row[column.key].data" v-bind="row[column.key].props"></component>
         </template>
         <template v-else-if="column.type && column.type === 'link'">
           <router-link :to="row[column.key].url">{{ row[column.key].name }}</router-link>
