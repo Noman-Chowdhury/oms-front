@@ -1,4 +1,6 @@
 <script setup>
+import {useLogout} from "@/composable/useLogout";
+
 const props = defineProps(['onNavCloseClick', 'isExpanded', 'toggleSidebar', 'profileToggleSidebar'])
 import {onMounted, ref, onUnmounted, watchEffect, computed} from 'vue'
 import { useI18n } from 'vue-i18n'
@@ -10,6 +12,8 @@ import {layoutPosition} from "@/composable/navPositionSetting";
 const isFullScreen = ref(false);
 const lightThemeLogo = new URL('/src/assets/images/logo-black.png', import.meta.url)
 const darkThemeLogo = new URL('/src/assets/images/logo-big.png', import.meta.url)
+
+const {logout, isLoading} = useLogout()
 
 const toggleFullscreen = () => {
   let elem = document.documentElement;
@@ -300,7 +304,7 @@ onUnmounted(() => {
               <li><a class="dropdown-item" href="#"><span class="dropdown-icon"><i class="fa-regular fa-circle-question"></i></span> Help</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><router-link class="dropdown-item" :to="{ name: 'edit_profile' }"><span class="dropdown-icon"><i class="fa-regular fa-gear"></i></span> Settings</router-link></li>
-              <li><router-link class="dropdown-item" :to="{ name: 'login' }"><span class="dropdown-icon"><i class="fa-regular fa-arrow-right-from-bracket"></i></span> Logout</router-link></li>
+              <li><span class="dropdown-item" @click="logout"><span class="dropdown-icon"><i class="fa-regular fa-arrow-right-from-bracket"></i></span> Logout</span></li>
             </ul>
           </div>
         </div>

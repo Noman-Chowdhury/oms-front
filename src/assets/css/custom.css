@@ -2,3 +2,17 @@
     margin-bottom: 7px;
     font-size: 16px
 }
+
+.login-body {
+    .top{
+        background-color: #034f75;
+        text-align: center;
+    }
+}
+
+.light-theme .main-content .login-body .bottom .panel-title{
+    color: #034f75;
+}
+.main-content .login-body .login-btn::after{
+    background: #034f75;
+}

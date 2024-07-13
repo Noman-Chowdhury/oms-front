@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const adminAxiosInstance = axios.create({
-    baseURL: `${import.meta.env.VITE_APP_URL}`,
+    baseURL: `${import.meta.env.VITE_APP_URL}/api`,
     headers: {
         'Accept': 'application/json',
         'X-Requested-With': 'XMLHttpRequest',
@@ -11,7 +11,7 @@ const adminAxiosInstance = axios.create({
 });
 
 const userAxiosInstance = axios.create({
-    baseURL: `${import.meta.env.VITE_APP_URL}`,
+    baseURL: `${import.meta.env.VITE_APP_URL}/api`,
     headers: {
         'Accept': 'application/json',
         'X-Requested-With': 'XMLHttpRequest',
@@ -29,4 +29,4 @@ const axiosInstance = axios.create({
     }
 });
 
-export { adminAxiosInstance, userAxiosInstance, axiosInstance };
+export {adminAxiosInstance, userAxiosInstance, axiosInstance};

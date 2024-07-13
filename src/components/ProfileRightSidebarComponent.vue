@@ -1,11 +1,18 @@
 <script setup>
-import { ref } from 'vue';
+import {ref} from 'vue';
+import Loader from "@/components/Loader.vue";
+import {useLogout} from "@/composable/useLogout";
+
 const props = defineProps(['isActive', 'profileToggleDropdown', 'closeProfileSidebar'])
 const seeDropdown = ref(false)
 
+const {logout, isLoading} = useLogout()
 </script>
 
 <template>
+  <div v-if="isLoading">
+    <Loader/>
+  </div>
   <div class="profile-right-sidebar" :class="{'active': isActive}">
     <button class="right-bar-close" @click="closeProfileSidebar"><i class="fa-light fa-angle-right"></i></button>
     <div class="top-panel">
@@ -17,23 +24,31 @@ const seeDropdown = ref(false)
               <span class="d-block">Web Developer</span>
               <div class="d-flex justify-content-center">
                 <div class="form-check pt-3">
-                  <input class="form-check-input" type="checkbox" v-model="seeDropdown" id="seeProfileAsDropdown" @change="profileToggleDropdown">
+                  <input class="form-check-input" type="checkbox" v-model="seeDropdown" id="seeProfileAsDropdown"
+                         @change="profileToggleDropdown">
                   <label class="form-check-label" for="seeProfileAsDropdown">See as dropdown</label>
                 </div>
               </div>
             </div>
           </li>
           <li>
-            <router-link to="/view-profile" class="dropdown-item"><span class="dropdown-icon"><i class="fa-regular fa-circle-user"></i></span> Profile</router-link>
+            <router-link to="/view-profile" class="dropdown-item"><span class="dropdown-icon"><i
+                class="fa-regular fa-circle-user"></i></span> Profile
+            </router-link>
           </li>
           <li>
-            <router-link to="/chat" class="dropdown-item"><span class="dropdown-icon"><i class="fa-regular fa-message-lines"></i></span> Message</router-link>
+            <router-link to="/chat" class="dropdown-item"><span class="dropdown-icon"><i
+                class="fa-regular fa-message-lines"></i></span> Message
+            </router-link>
           </li>
           <li>
-            <router-link to="/task" class="dropdown-item"><span class="dropdown-icon"><i class="fa-regular fa-calendar-check"></i></span> Taskboard</router-link>
+            <router-link to="/task" class="dropdown-item"><span class="dropdown-icon"><i
+                class="fa-regular fa-calendar-check"></i></span> Taskboard
+            </router-link>
           </li>
           <li>
-            <a class="dropdown-item" href="#"><span class="dropdown-icon"><i class="fa-regular fa-circle-question"></i></span> Help</a>
+            <a class="dropdown-item" href="#"><span class="dropdown-icon"><i class="fa-regular fa-circle-question"></i></span>
+              Help</a>
           </li>
         </ul>
       </div>
@@ -41,7 +56,7 @@ const seeDropdown = ref(false)
     <div class="bottom-panel">
       <div class="button-group">
         <router-link to="/edit-profile"><i class="fa-light fa-gear"></i><span>Settings</span></router-link>
-        <router-link to="/login"><i class="fa-light fa-power-off"></i><span>Logout</span></router-link>
+        <span href="javascript:void(0)" @click="logout"><i class="fa-light fa-power-off"></i><span>Logout</span></span>
       </div>
     </div>
   </div>

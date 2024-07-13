@@ -18,6 +18,7 @@ import ProfileRightSidebarComponent from "@/components/ProfileRightSidebarCompon
 
 import router from '@/router/index'
 import layouts from "@/layouts";
+import {adminAxiosInstance, userAxiosInstance} from "@/plugins/axiosInstance";
 
 const route = useRoute();
 
@@ -202,6 +203,66 @@ watch(currentActiveTheme, () => {
     element.classList.remove('dark-theme')
   }
 })
+
+router.beforeEach(async (to, from, next) => {
+  const handleUserCheck = async () => {
+    try {
+      const response = await userAxiosInstance.get('/user/profile');
+      if (response.data.success) {
+        return true;
+      } else {
+        localStorage.removeItem('_u_t');
+        localStorage.removeItem('_u');
+        return false;
+      }
+    } catch {
+      return false;
+    }
+  };
+
+  const handleAdminCheck = async () => {
+    try {
+      const response = await adminAxiosInstance.get('/admin/profile');
+      if (response.data.success) {
+        return true;
+      } else {
+        localStorage.removeItem('_a_t');
+        localStorage.removeItem('_a_u');
+        return false;
+      }
+    } catch {
+      return false;
+    }
+  };
+
+  if (to.matched.some(record => record.meta.isAdmin)) {
+    const isAdmin = await handleAdminCheck();
+    if (isAdmin) {
+      next();
+    } else {
+      next({ path: "/admin/login", query: { redirect: to.fullPath } });
+    }
+  } else if (to.matched.some(record => record.meta.isUser)) {
+    const isUser = await handleUserCheck();
+    if (isUser) {
+      next({ path: "/" });
+    } else {
+      next({ path: "/login", query: { redirect: to.fullPath } });
+    }
+  } else if (to.matched.some(record => record.meta.layout === 'GuestLayout')) {
+    const [isUser, isAdmin] = await Promise.all([handleUserCheck(), handleAdminCheck()]);
+    if (isUser) {
+      next({ path: "/" });
+    } else if (isAdmin) {
+      next({ path: "/admin/dashboard" });
+    } else {
+      next();
+    }
+  } else {
+    // const [isUser, isAdmin] = await Promise.all([handleUserCheck(), handleAdminCheck()]);
+    next();
+  }
+});
 
 router.afterEach((to) => {
   isPartials.value = to.meta.isPartials

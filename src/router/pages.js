@@ -5,7 +5,7 @@ export const pagesRoutes = [
         path: '/',
         component: HomeView,
         name: 'dashboard_index',
-        meta: { layout: 'AppLayout', isPartials: true },
+        meta: { layout: 'AppLayout', isPartials: true, isUser: true },
     },
     {
         path: '/crm-dashboard',
