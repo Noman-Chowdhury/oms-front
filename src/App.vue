@@ -141,7 +141,7 @@ const closeSidebar = () => {
 
 const activeTheme = (() => {
   let element = document.body
-  if(currentActiveTheme.value === 'light-theme') {
+  if (currentActiveTheme.value === 'light-theme') {
     element.classList.remove('dark-theme')
     element.classList.add('light-theme')
   } else if (currentActiveTheme.value === 'dark-theme') {
@@ -171,8 +171,8 @@ onMounted(() => {
   }
 
   if (selectedStyleSheet.value) {
-      setStyleSheet(selectedStyleSheet.value);
-    }
+    setStyleSheet(selectedStyleSheet.value);
+  }
   useMainContentCurrentBG()
   // useDisableEnablePreloader()
 });
@@ -192,7 +192,7 @@ watch(selectedStyleSheet, () => {
 
 watch(currentActiveTheme, () => {
   let element = document.body
-  if(currentActiveTheme.value === 'light-theme') {
+  if (currentActiveTheme.value === 'light-theme') {
     element.classList.remove('dark-theme')
     element.classList.add('light-theme')
   } else if (currentActiveTheme.value === 'dark-theme') {
@@ -240,21 +240,21 @@ router.beforeEach(async (to, from, next) => {
     if (isAdmin) {
       next();
     } else {
-      next({ path: "/admin/login", query: { redirect: to.fullPath } });
+      next({path: "/admin/login", query: {redirect: to.fullPath}});
     }
   } else if (to.matched.some(record => record.meta.isUser)) {
     const isUser = await handleUserCheck();
     if (isUser) {
       next();
     } else {
-      next({ path: "/login", query: { redirect: to.fullPath } });
+      next({path: "/login", query: {redirect: to.fullPath}});
     }
   } else if (to.matched.some(record => record.meta.layout === 'GuestLayout')) {
     const [isUser, isAdmin] = await Promise.all([handleUserCheck(), handleAdminCheck()]);
     if (isUser) {
-      next({ path: "/" });
+      next({path: "/"});
     } else if (isAdmin) {
-      next({ path: "/admin/dashboard" });
+      next({path: "/admin/dashboard"});
     } else {
       next();
     }
@@ -274,7 +274,7 @@ provide('app:layout', layout.value)
 
 <template>
   <div class="body-padding body-p-top"
-   :class="{
+       :class="{
     expanded: isExpandedBody, 'light-theme': currentActiveTheme === 'light-theme',  'dark-theme': currentActiveTheme === 'dark-theme', 'hover-menu': hoverableMenu,
     'has-horizontal': layoutPosition === 'horizontal',
     'has-two-column-menu has-fixed-sidebar': layoutPosition === 'twoColumn',
@@ -282,54 +282,54 @@ provide('app:layout', layout.value)
   >
     <!-- preloader start -->
     <transition name="fade" mode="out-in">
-    <div class="preloader" :class="{'d-none ': !preloader}">
-      <div class="loader">
-        <span></span>
-        <span></span>
-        <span></span>
+      <div class="preloader" :class="{'d-none ': !preloader}">
+        <div class="loader">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
-    </div>
     </transition>
     <!-- preloader end -->
-      <!-- header start -->
-      <HeaderComponent v-show="isPartials"
-          :onNavCloseClick="onNavCloseClick"
-          :isExpanded="isExpanded"
-          :toggleSidebar="toggleSidebar"
-          :profileToggleSidebar="handleProfileClick"
-      />
-      <!-- header end -->
+    <!-- header start -->
+    <HeaderComponent v-show="isPartials"
+                     :onNavCloseClick="onNavCloseClick"
+                     :isExpanded="isExpanded"
+                     :toggleSidebar="toggleSidebar"
+                     :profileToggleSidebar="handleProfileClick"
+    />
+    <!-- header end -->
 
-      <!-- profile right sidebar start -->
-      <ProfileRightSidebarComponent v-show="isPartials"
-        :isActive="isActive"
-        :profileToggleDropdown="profileToggleDropdown"
-        :closeProfileSidebar="closeProfileSidebar"
-      />
-      <!-- profile right sidebar end -->
+    <!-- profile right sidebar start -->
+    <ProfileRightSidebarComponent v-show="isPartials"
+                                  :isActive="isActive"
+                                  :profileToggleDropdown="profileToggleDropdown"
+                                  :closeProfileSidebar="closeProfileSidebar"
+    />
+    <!-- profile right sidebar end -->
 
-<!--      <div class="right-sidebar-btn d-lg-block d-none">-->
-<!--        <button class="header-btn theme-settings-btn" @click="toggleSidebar"><i class="fa-light fa-gear"></i></button>-->
-<!--      </div>-->
+    <!--      <div class="right-sidebar-btn d-lg-block d-none">-->
+    <!--        <button class="header-btn theme-settings-btn" @click="toggleSidebar"><i class="fa-light fa-gear"></i></button>-->
+    <!--      </div>-->
 
-      <!-- right sidebar start -->
-      <RightSidebarComponent v-show="isPartials"
-        :isSidebarActive="isSidebarActive"
-        :closeSidebar="closeSidebar"
-        :isLightTheme="isLightTheme"
-      />
-      <!-- right sidebar end -->
+    <!-- right sidebar start -->
+    <RightSidebarComponent v-show="isPartials"
+                           :isSidebarActive="isSidebarActive"
+                           :closeSidebar="closeSidebar"
+                           :isLightTheme="isLightTheme"
+    />
+    <!-- right sidebar end -->
 
-      <!-- main sidebar start -->
-      <MainSidebarComponent v-show="isPartials"
-          :isCollapsed="isCollapsed"
-          :isTwoColumnMenu="isTwoColumnMenu"
-          :isSidebarMini="isSidebarMini"
-          :isSubMenuCollapsed="isSubMenuCollapsed"
-          :closeMainLeftSidebar="closeMainLeftSidebar"
-      />
-      <!-- main sidebar end -->
-    
+    <!-- main sidebar start -->
+    <MainSidebarComponent v-show="isPartials"
+                          :isCollapsed="isCollapsed"
+                          :isTwoColumnMenu="isTwoColumnMenu"
+                          :isSidebarMini="isSidebarMini"
+                          :isSubMenuCollapsed="isSubMenuCollapsed"
+                          :closeMainLeftSidebar="closeMainLeftSidebar"
+    />
+    <!-- main sidebar end -->
+
     <!-- main content start -->
     <component :is="layout">
       <RouterView/>

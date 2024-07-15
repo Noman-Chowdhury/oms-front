@@ -1,24 +1,22 @@
 <script setup lang="ts">
-import {onMounted, ref} from "vue";
+import {computed, onMounted, ref} from "vue";
 import VOtpInput from "vue3-otp-input";
 import Swal from 'sweetalert2'
 import {useRouter} from "vue-router";
+import {useUpdatePassword} from "@/stores/passwordStore";
+import { useObfuscateEmail } from "@/composable/useObfuscateEmail"
+
 const router = useRouter();
+const passwordStore = useUpdatePassword();
 
 const otpInput = ref<InstanceType<typeof VOtpInput> | null>(null);
 const bindModal = ref("");
+const { obfuscateEmail } = useObfuscateEmail();
+const obfuscatedEmail = computed(() => obfuscateEmail(passwordStore.email));
+const handleOnComplete = async (value: string) => {
 
-const handleOnComplete = (value: string) => {
   if (bindModal.value !== '' && bindModal.value.length === 6) {
-    Swal.fire({
-      text: "You have been successfully verified!",
-      icon: "success",
-      customClass: {
-        closeButton: 'btn btn-sm btn-icon btn-success',
-      },
-      showCloseButton: false,
-    })
-    router.push({ name: 'dashboard_index'});
+    await passwordStore.verifyResetCode(bindModal.value)
   } else {
     Swal.fire({
       text: "Please enter valid security code",
@@ -49,14 +47,8 @@ onMounted(() => {
 
 <template>
   <div class="container">
-    <div class="row g-4 align-items-center">
-      <div class="col-lg-6">
-        <div class="text-lg-start text-center logo mb-4">
-          <img src="@/assets/images/logo-big.png" alt="logo">
-        </div>
-        <p class="text-lg-start text-center mb-lg-0 mb-4">It's the Bright One, it's the Right One, that's Business.</p>
-      </div>
-      <div class="col-lg-6">
+    <div class="row text-center">
+      <div class="col-lg-12" align="center">
         <div class="static-body">
           <div class="panel bg-transparent">
             <div class="panel-body">
@@ -66,10 +58,10 @@ onMounted(() => {
               <div class="part-txt text-center">
                 <h2>Two-Factor Verification</h2>
                 <p class="mb-2">Enter the verification code we sent to</p>
-                <p class="fw-semibold fs-5 mb-lg-4 mb-0">********678</p>
+                <p class="fw-semibold fs-5 mb-lg-4 mb-0">{{  obfuscatedEmail }}</p>
               </div>
               <div class="verification-area text-center">
-<!--                <div id="otp_target"></div>-->
+                <!--                <div id="otp_target"></div>-->
                 <div class="justify-content-center">
                   <v-otp-input
                       ref="otpInput"
@@ -83,10 +75,13 @@ onMounted(() => {
                       :placeholder="['*', '*', '*', '*', '*', '*']"
                       @on-change="handleOnChange"
                       @on-complete="handleOnComplete"
+                      class="justify-content-center"
                   />
                 </div>
                 <p class="mb-4">Type your 6 digit security code</p>
-                <button class="btn btn-primary px-3 security-code-submit" @click="handleOnComplete">Submit</button>
+                <div class="text-center">
+                  <button class="btn btn-primary px-3 security-code-submit" @click="handleOnComplete">Submit</button>
+                </div>
               </div>
             </div>
           </div>
@@ -104,25 +99,31 @@ onMounted(() => {
   margin: 0 10px;
   font-size: 20px;
   border-radius: 4px;
-  border: 1px solid rgba(223, 223, 223, 0.15);
+  border: 1px solid #034f75;
   color: #A9B4CC;
   text-align: center;
 }
+
 /* Background colour of an input field with value */
 .otp-input.is-complete {
-  background-color: #e4e4e4;
+  //background-color: #034f75;
 }
+
 .otp-input::-webkit-inner-spin-button,
 .otp-input::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
 input::placeholder {
   font-size: 15px;
   text-align: center;
   font-weight: 600;
 }
+
 .otp-input.is-complete {
-  background: transparent;
+  //background: transparent;
+  background-color: #034f75;
+  color: #FFFFFF;
 }
 </style>

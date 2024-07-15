@@ -16,7 +16,7 @@
 
 .main-content .login-body .login-btn {
     background: #034f75;
-    width: 50%;
+    width: 50% !important;
     border-radius: 20px;
 }
 

@@ -1,27 +1,64 @@
 <script setup>
 
+import {onMounted, ref} from "vue";
+import {useUpdatePassword} from "@/stores/passwordStore";
+import Swal from "sweetalert2";
+import {useRouter} from "vue-router";
+
+const passStore = useUpdatePassword()
+const router = useRouter()
+
+const cred = ref({
+  password: '',
+  confirm_password: ''
+})
+
+const updatePassword = async () =>{
+  event.preventDefault()
+  if (cred.value.password !== cred.value.confirm_password) {
+    Swal.fire({
+      text: "Password Does Not Match",
+      icon: "error",
+      confirmButtonText: "Try Again",
+      customClass: {
+        closeButton: 'btn btn-sm btn-icon btn-danger',
+      },
+      showCloseButton: false,
+    });
+    return false
+  }
+  await passStore.updatePassword(cred.value)
+}
+
+onMounted(()=>{
+  if (!passStore.token){
+    router.push({name: 'two_factor'})
+  }
+})
+
 </script>
 
 <template>
   <div class="login-body">
-    <div class="top d-flex justify-content-between align-items-center">
+    <div class="top justify-content-between align-items-center">
       <div class="logo">
-        <img src="@/assets/images/logo-big.png" alt="Logo">
+        <img src="@/assets/images/oms-logo-big.png" alt="Logo">
       </div>
-      <router-link :to="{name: 'dashboard_index'}"><i class="fa-duotone fa-house-chimney"></i></router-link>
     </div>
     <div class="bottom">
       <h3 class="panel-title">Update Password</h3>
       <form>
         <div class="input-group mb-25">
           <span class="input-group-text"><i class="fa-regular fa-lock"></i></span>
-          <input type="password" class="form-control" placeholder="New Password">
+          <input type="password" class="form-control" placeholder="New Password" v-model="cred.password">
         </div>
         <div class="input-group mb-25">
           <span class="input-group-text"><i class="fa-regular fa-lock"></i></span>
-          <input type="password" class="form-control" placeholder="Confirm New Password">
+          <input type="password" class="form-control" placeholder="Confirm New Password"  v-model="cred.confirm_password">
         </div>
-        <button class="btn btn-primary w-100 login-btn">Update Password</button>
+        <div class="text-center">
+          <button class="btn btn-primary login-btn" @click="updatePassword">Update Password</button>
+        </div>
       </form>
     </div>
   </div>
