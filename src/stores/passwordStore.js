@@ -1,6 +1,6 @@
 import {defineStore} from 'pinia';
 
-import {axiosInstance} from "@/plugins/axiosInstance";
+import {adminAxiosInstance, axiosInstance, userAxiosInstance} from "@/plugins/axiosInstance";
 import {useToast} from "vue-toast-notification";
 import router from "@/router";
 
@@ -85,6 +85,43 @@ export const useUpdatePassword = defineStore('password', {
                 $toast.error('Something went wrong!')
             })
             this.loading = false;
+        },
+        async changeOldPassword(old_password, new_password, userType) {
+            this.loading = true;
+            if (userType === 'user') {
+                userAxiosInstance.post('/update-password', {
+                    old_password,
+                    password: new_password.password,
+                    password_confirmation: new_password.confirm_password,
+                }).then((response) => {
+                    $toast.success(response.data.message)
+                }).catch((error) => {
+                    if (error.response && error.response.status === 422) {
+                        const errors = error.response.data.errors;
+                        for (const field in errors) {
+                            if (errors.hasOwnProperty(field)) {
+                                $toast.error(errors[field][0]);
+                            }
+                        }
+
+                    } else {
+                        $toast.error('Something went wrong!')
+                    }
+
+                })
+                this.loading = false;
+            } else {
+                adminAxiosInstance.post('/update-password', {
+                    old_password,
+                    password: new_password.password,
+                    password_confirmation: new_password.confirm_password,
+                }).then((response) => {
+                    $toast.success(response.data.message)
+                }).catch((error) => {
+                    $toast.error('Something went wrong!')
+                })
+                this.loading = false;
+            }
         }
     }
 })

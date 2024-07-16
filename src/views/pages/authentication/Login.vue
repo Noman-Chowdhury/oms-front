@@ -4,12 +4,14 @@ import {userAxiosInstance} from "@/plugins/axiosInstance";
 import {useToast} from "vue-toast-notification";
 import Loader from "@/components/Loader.vue";
 import {useRouter} from "vue-router";
+import {useUserInfoStore} from "@/stores/userInfoStore";
 
 const $toast = useToast({position: 'top-right'});
 const router = useRouter();
 const isLoading = ref(false);
 
 const isPasswordShow = ref(false);
+const userStore = useUserInfoStore();
 
 const credentials = ref({
   email: '',
@@ -24,8 +26,7 @@ const login = async () => {
     userAxiosInstance.post('/login', credentials.value)
         .then((response) => {
           const resData = response.data;
-          localStorage.setItem('_u_t', resData.data.access_token);
-          localStorage.setItem('_u', JSON.stringify(resData.data.userData));
+          userStore.setUser(resData.data.userData, resData.data.access_token, 'user');
           $toast.success(resData.message);
           router.push({name: 'dashboard_index'})
         }).catch((error) => {

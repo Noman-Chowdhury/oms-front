@@ -8,10 +8,12 @@ import Tr from "@/i18n/translation"
 import Calculator from "@/components/HeaderCalculator.vue"
 import {toggleTheme, currentActiveTheme} from "@/composable/manageThemeSetting.js"
 import {layoutPosition} from "@/composable/navPositionSetting";
+import {useUserInfoStore} from "@/stores/userInfoStore";
 
 const isFullScreen = ref(false);
 const lightThemeLogo = new URL('/src/assets/images/logo-black.png', import.meta.url)
 const darkThemeLogo = new URL('/src/assets/images/logo-big.png', import.meta.url)
+const userInfoStore = useUserInfoStore()
 
 const {logout, isLoading} = useLogout()
 
@@ -288,7 +290,7 @@ onUnmounted(() => {
             <ul class="dropdown-menu profile-dropdown-menu">
               <li>
                 <div class="dropdown-txt text-center">
-                  <p class="mb-0">Shaikh Abu Dardah</p>
+                  <p class="mb-0">{{  userInfoStore.user.name }}</p>
                   <span class="d-block">Web Developer</span>
                   <div class="d-flex justify-content-center">
                     <div class="form-check pt-3">
@@ -298,6 +300,7 @@ onUnmounted(() => {
                   </div>
                 </div>
               </li>
+              <li v-if="userInfoStore.userType == 'user'"><router-link class="dropdown-item" :to="{ name: 'change_password' }"><span class="dropdown-icon"><i class="fa-regular fa-circle-user"></i></span> Chnage Password</router-link></li>
               <li><router-link class="dropdown-item" :to="{ name: 'view_profile' }"><span class="dropdown-icon"><i class="fa-regular fa-circle-user"></i></span> Profile</router-link></li>
               <li><router-link class="dropdown-item" :to="{ name: 'chat' }"><span class="dropdown-icon"><i class="fa-regular fa-message-lines"></i></span> Message</router-link></li>
               <li><router-link class="dropdown-item" :to="{ name: 'crm_task' }"><span class="dropdown-icon"><i class="fa-regular fa-calendar-check"></i></span> Taskboard</router-link></li>

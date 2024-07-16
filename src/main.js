@@ -28,6 +28,7 @@ import { createPinia } from 'pinia'
 import App from './App.vue'
 
 import router from './router'
+import {useUserInfoStore} from "@/stores/userInfoStore";
 
 const app = createApp(App)
 
@@ -36,5 +37,8 @@ app.use(ToastPlugin);
 app.use(createPinia());
 app.use(router);
 app.use(VueSweetalert2);
+
+const userStore = useUserInfoStore();
+userStore.initializeStore();
 
 app.mount('#app', AOS.init());

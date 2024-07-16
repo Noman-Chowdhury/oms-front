@@ -8,6 +8,12 @@ export const pagesRoutes = [
         meta: { layout: 'AppLayout', isPartials: true, isUser: true },
     },
     {
+        path: '/change-password',
+        component: ()=> import('@/views/pages/user/ChangePassword.vue'),
+        name: 'change_password',
+        meta: { layout: 'AppLayout', isPartials: true, isUser: true },
+    },
+    {
         path: '/crm-dashboard',
         component: () => import('@/views/dashboard/CrmDashboard.vue'),
         name: 'crm_dashboard',
