@@ -290,7 +290,7 @@ onUnmounted(() => {
             <ul class="dropdown-menu profile-dropdown-menu">
               <li>
                 <div class="dropdown-txt text-center">
-                  <p class="mb-0">{{  userInfoStore.user.name }}</p>
+                  <p class="mb-0">{{   userInfoStore?.user?.name }}</p>
                   <span class="d-block">Web Developer</span>
                   <div class="d-flex justify-content-center">
                     <div class="form-check pt-3">
