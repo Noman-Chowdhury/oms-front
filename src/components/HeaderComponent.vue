@@ -300,7 +300,7 @@ onUnmounted(() => {
                   </div>
                 </div>
               </li>
-              <li v-if="userInfoStore.userType == 'user'"><router-link class="dropdown-item" :to="{ name: 'change_password' }"><span class="dropdown-icon"><i class="fa-regular fa-circle-user"></i></span> Chnage Password</router-link></li>
+              <li v-if="userInfoStore.userType == 'user'"><router-link class="dropdown-item" :to="{ name: 'change_password' }"><span class="dropdown-icon"><i class="fa-regular fa-circle-user"></i></span> Change Password</router-link></li>
               <li><router-link class="dropdown-item" :to="{ name: 'view_profile' }"><span class="dropdown-icon"><i class="fa-regular fa-circle-user"></i></span> Profile</router-link></li>
               <li><router-link class="dropdown-item" :to="{ name: 'chat' }"><span class="dropdown-icon"><i class="fa-regular fa-message-lines"></i></span> Message</router-link></li>
               <li><router-link class="dropdown-item" :to="{ name: 'crm_task' }"><span class="dropdown-icon"><i class="fa-regular fa-calendar-check"></i></span> Taskboard</router-link></li>

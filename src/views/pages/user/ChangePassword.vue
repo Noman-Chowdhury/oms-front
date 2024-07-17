@@ -85,7 +85,7 @@ const updatePassword = async () => {
                     <input type="url" class="form-control" placeholder="Confirm Password" v-model="cred.confirm_password">
                   </div>
                 </div>
-                <div class="col-12">
+                <div class="col-12 text-end">
                   <button type="submit" class="btn btn-primary" @click="updatePassword">Save Changes</button>
                 </div>
               </div>
