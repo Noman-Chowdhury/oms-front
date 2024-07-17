@@ -23,3 +23,28 @@
 .main-content .login-body .login-btn::after {
     background: #034f75;
 }
+.main-content .login-body .top{
+    height: auto;
+}
+
+.main-content .login-body .login-btn:focus::after{
+    width: unset;
+}
+
+.login-btn{
+    font-size: 18px;
+}
+.footer{
+    background: unset !important;
+}
+
+@media only screen and (max-width: 991px) and (min-width: 320px) {
+    .logo img {
+        max-width: 100% !important;
+    }
+
+    .main-content .login-body .top{
+        height: auto;
+        text-align: -webkit-center;
+    }
+}

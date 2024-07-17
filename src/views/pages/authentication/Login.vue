@@ -1,10 +1,11 @@
 <script setup>
-import {nextTick, ref} from "vue";
+import {ref} from "vue";
 import {userAxiosInstance} from "@/plugins/axiosInstance";
 import {useToast} from "vue-toast-notification";
 import Loader from "@/components/Loader.vue";
 import {useRouter} from "vue-router";
 import {useUserInfoStore} from "@/stores/userInfoStore";
+import FooterComponent from "@/components/FooterComponent.vue";
 
 const $toast = useToast({position: 'top-right'});
 const router = useRouter();
@@ -66,7 +67,7 @@ const login = async () => {
       <form>
         <div class="input-group mb-25">
           <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
-          <input type="text" class="form-control" placeholder="Username or email address" v-model="credentials.email">
+          <input type="text" class="form-control" placeholder="Email Address" v-model="credentials.email">
         </div>
         <div class="input-group mb-20">
           <span class="input-group-text"><i class="fa-regular fa-lock"></i></span>
@@ -90,6 +91,7 @@ const login = async () => {
       </form>
     </div>
   </div>
+  <FooterComponent/>
 </template>
 
 <style scoped>
