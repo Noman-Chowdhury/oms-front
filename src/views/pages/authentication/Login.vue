@@ -67,11 +67,12 @@ const login = async () => {
       <form>
         <div class="input-group mb-25">
           <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
-          <input type="text" class="form-control" placeholder="Email Address" v-model="credentials.email">
+          <input type="text" class="form-control left-aligned" placeholder="Email Address" v-model="credentials.email">
         </div>
         <div class="input-group mb-20">
           <span class="input-group-text"><i class="fa-regular fa-lock"></i></span>
-          <input :type="[isPasswordShow ? 'text' : 'password']" class="form-control rounded-end" placeholder="Password"
+          <input :type="[isPasswordShow ? 'text' : 'password']" class="form-control rounded-end left-aligned"
+                 placeholder="Password"
                  v-model="credentials.password">
           <a role="button" class="password-show" @click="isPasswordShow = !isPasswordShow"><i class="fa-duotone"
                                                                                               :class="[isPasswordShow ? 'fa-eye-slash':'fa-eye']"></i></a>

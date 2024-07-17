@@ -22,7 +22,7 @@ export const useUpdatePassword = defineStore('password', {
             localStorage.setItem('r_u_t', userType)
             this.email = localStorage.getItem('r_u_e')
             this.userType = localStorage.getItem('r_u_t')
-            axiosInstance.post('/api/password-reset-code', {
+            await axiosInstance.post('/api/password-reset-code', {
                 email,
                 user_type: userType,
             }).then((response) => {
@@ -53,7 +53,7 @@ export const useUpdatePassword = defineStore('password', {
         async verifyResetCode(code, email = this.email, userType = this.userType) {
             this.loading = true;
             this.token = code;
-            axiosInstance.post('/api/verify-password-reset-code', {
+            await axiosInstance.post('/api/verify-password-reset-code', {
                 email,
                 user_type: userType,
                 token: this.token
@@ -69,7 +69,7 @@ export const useUpdatePassword = defineStore('password', {
         async updatePassword(password, code = this.token, email = this.email, userType = this.userType) {
             this.loading = true;
             this.cred = password;
-            axiosInstance.post('/api/password-reset', {
+            await axiosInstance.post('/api/password-reset', {
                 email,
                 user_type: userType,
                 token: this.token,
@@ -89,7 +89,7 @@ export const useUpdatePassword = defineStore('password', {
         async changeOldPassword(old_password, new_password, userType) {
             this.loading = true;
             if (userType === 'user') {
-                userAxiosInstance.post('/update-password', {
+                await userAxiosInstance.post('/update-password', {
                     old_password,
                     password: new_password.password,
                     password_confirmation: new_password.confirm_password,

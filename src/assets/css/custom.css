@@ -48,3 +48,11 @@
         text-align: -webkit-center;
     }
 }
+.left-aligned {
+    text-align: left;
+}
+
+/* Placeholder styling */
+.left-aligned::placeholder {
+    text-align: left;
+}
