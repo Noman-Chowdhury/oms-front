@@ -34,15 +34,9 @@ export const useUpdatePassword = defineStore('password', {
                     for (const field in errors) {
                         if (errors.hasOwnProperty(field)) {
                             $toast.error(errors[field][0]);
-                            if (errors[field][0] === 'A verification code already sent to this email') {
-                                router.push({name: 'two_factor'})
-                            }
                         }
                     }
 
-                } else if (error.response.data.message !== "Already Sent a Code") {
-                    $toast.error('Something went wrong!')
-                    return false
                 } else {
                     $toast.error('Something went wrong!.');
                     console.error('An error occurred:', error);
