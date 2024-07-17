@@ -3,6 +3,7 @@ import {onMounted, ref} from 'vue';
 import {useUpdatePassword} from "@/stores/passwordStore";
 import Loader from "@/components/Loader.vue";
 import {useRouter} from "vue-router";
+import FooterComponent from "@/components/FooterComponent.vue";
 
 const passwordStore = useUpdatePassword();
 const email = ref(passwordStore.email)
@@ -44,7 +45,7 @@ onMounted(()=>{
       <form>
         <div class="input-group mb-25">
           <span class="input-group-text"><i class="fa-regular fa-envelope"></i></span>
-          <input type="text" class="form-control" placeholder="Username or email address" v-model="email">
+          <input type="text" class="form-control" placeholder="Email Address" v-model="email">
         </div>
         <div class="text-center">
           <button class="btn btn-primary login-btn" @click="getCode">Get Code</button>
@@ -55,6 +56,7 @@ onMounted(()=>{
       </div>
     </div>
   </div>
+  <FooterComponent/>
 </template>
 
 <style scoped>
