@@ -64,7 +64,7 @@ const login = async () => {
       <form>
         <div class="input-group mb-25">
           <span class="input-group-text"><i class="fa-regular fa-user"></i></span>
-          <input type="text" class="form-control" placeholder="Username or email address" v-model="credentials.email">
+          <input type="text" class="form-control" placeholder="Email Address" v-model="credentials.email">
         </div>
         <div class="input-group mb-20">
           <span class="input-group-text"><i class="fa-regular fa-lock"></i></span>
