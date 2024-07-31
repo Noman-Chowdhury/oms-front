@@ -5,8 +5,9 @@ export const formatStatus = (status) => {
         case 'approved':
         case 'active':
             return '<span class="badge bg-success">' + status.toString().toUpperCase() + '</span>';
+        case 'inactive':
         case 'rejected':
-            return '<span class="badge bg-warning">Pending</span>';
+            return '<span class="badge bg-danger">' + status.toString().toUpperCase() + '</span>';
         case 'Unpaid':
             return '<span class="badge bg-danger">Unpaid</span>';
         case 'Canceled':
