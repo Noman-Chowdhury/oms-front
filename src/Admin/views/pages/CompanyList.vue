@@ -55,7 +55,6 @@ onMounted(() => {
               :columns="tableColumns"
               :selectedItems="selectedItems"
               @update:selectedItems="selectedItems = $event"
-              @approve="handleApprove"
           >
             <template #cell(action)="slotProps">
               <component

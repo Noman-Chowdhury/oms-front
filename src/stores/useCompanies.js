@@ -38,6 +38,7 @@ export const useCompanyStore = defineStore('company', {
                         $toast.success(response.data.message)
                         const company = this.companies.find(c => c.id === companyId);
                         if (company) {
+                            company.status = 'active';
                             company.status = formatStatus('active');
                         }
                     });
