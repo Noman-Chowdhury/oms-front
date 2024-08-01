@@ -21,20 +21,6 @@ const getInitialEmployeeState = () => ({
     department_id: '',
     designation_id: '',
     shift_id: '',
-    present_address: {
-        division_id:  '',
-        district_id: '',
-        upazila_id: '',
-        union_id: '',
-        address: ''
-    },
-    permanent_address: {
-        division_id: '',
-        district_id: '',
-        upazila_id: '',
-        union_id: '',
-        address: ''
-    },
     bank_name: '',
     branch_name: '',
     bank_account_name: '',
@@ -46,10 +32,11 @@ const getInitialEmployeeState = () => ({
     marital_status: '',
     blood_group: '',
     nid_no: '',
-    father_name: '',
-    mother_name: '',
     image: '',
-    religion: '',
+    address: '',
+    city: '',
+    state: '',
+    zip_code: '',
     same_address: false,
     login_access: false,
 });
@@ -79,6 +66,7 @@ export const useEmployeeStore = defineStore('employee', {
         },
         async storeEmployee() {
             try {
+                this.loading = true;
                 await userAxiosInstance.post('/employees', this.employee)
                     .then((res) => {
                         $toast.success(res.data.message)
