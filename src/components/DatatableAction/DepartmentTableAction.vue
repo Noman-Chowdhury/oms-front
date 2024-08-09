@@ -37,8 +37,8 @@ const handleDelete = () => {
 
 <template>
   <div class="btn-box">
-    <button @click="handleEdit"><i class="fa-light fa-pen"></i></button>
-    <button @click="handleDelete"><i class="fa-light fa-trash"></i></button>
+    <button @click="handleEdit" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen"></i></button>
+    <button @click="handleDelete" class="btn btn-sm btn-primary"><i class="fa-solid fa-trash"></i></button>
   </div>
 </template>
 

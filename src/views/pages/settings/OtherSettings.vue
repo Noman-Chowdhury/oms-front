@@ -16,14 +16,12 @@ const shiftSelectedItems = ref([]);
 const isSearch = ref(true);
 
 const desTableColumns = ref([
-  {label: "", key: "selected", type: "checkbox"},
   {label: "Name", key: "name", sortable: true},
   {label: "Status", key: "status", sortable: false, type: 'html'},
   {label: "Action", key: "action", sortable: false, type: 'component'},
 ]);
 
 const shiftTableColumns = ref([
-  {label: "", key: "selected", type: "checkbox"},
   {label: "Name", key: "name", sortable: true},
   {label: "Start Time", key: "start_time", sortable: true},
   {label: "End Time", key: "end_time", sortable: true},

@@ -21,7 +21,6 @@ const isSearch = ref(true);
 const employeeStore = useEmployeeStore()
 
 const tableColumns = ref([
-  {label: "", key: "selected", type: "checkbox"},
   {label: "Action", key: "action", type: "component"},
   {label: "Employee ID", key: "employee_id", sortable: true},
   {label: "Photo", key: "photo_url", sortable: false, type: "image"},
@@ -29,21 +28,6 @@ const tableColumns = ref([
   {label: "Phone", key: "phone_number", sortable: true},
   {label: "Present Address", key: "name", sortable: true},
 ]);
-
-// const tableData = ref([
-//   { id: 1, action: actionComponent, employee_id: 'ID-100221009', name: 'Shaikh Abu Dardah', photo: new URL ('/src/assets/images/avatar-2.png', import.meta.url), section: 'Development', phone: '+1 234 567 890', present_address: '75 York Road OUTGATE LA22 6HL', status: '<span class="active-mark"><i class="fa-regular fa-check"></i></span> Active' },
-//   { id: 2, action: actionComponent, employee_id: 'ID-100221008', name: 'Shaikh Abu Dardah', photo: new URL ('/src/assets/images/avatar-2.png', import.meta.url), section: 'Development', phone: '+1 234 567 890', present_address: '75 York Road OUTGATE LA22 6HL', status: '<span class="active-mark"><i class="fa-regular fa-check"></i></span> Active' },
-//   { id: 3, action: actionComponent, employee_id: 'ID-100221007', name: 'Shaikh Abu Dardah', photo: new URL ('/src/assets/images/avatar-2.png', import.meta.url), section: 'Development', phone: '+1 234 567 890', present_address: '75 York Road OUTGATE LA22 6HL', status: '<span class="active-mark"><i class="fa-regular fa-check"></i></span> Active' },
-//   { id: 4, action: actionComponent, employee_id: 'ID-100221006', name: 'Shaikh Abu Dardah', photo: new URL ('/src/assets/images/avatar-2.png', import.meta.url), section: 'Development', phone: '+1 234 567 890', present_address: '75 York Road OUTGATE LA22 6HL', status: '<span class="active-mark"><i class="fa-regular fa-check"></i></span> Active' },
-//   { id: 5, action: actionComponent, employee_id: 'ID-100221005', name: 'Shaikh Abu Dardah', photo: new URL ('/src/assets/images/avatar-2.png', import.meta.url), section: 'Development', phone: '+1 234 567 890', present_address: '75 York Road OUTGATE LA22 6HL', status: '<span class="active-mark"><i class="fa-regular fa-check"></i></span> Active' },
-//   { id: 6, action: actionComponent, employee_id: 'ID-100221004', name: 'Shaikh Abu Dardah', photo: new URL ('/src/assets/images/avatar-2.png', import.meta.url), section: 'Development', phone: '+1 234 567 890', present_address: '75 York Road OUTGATE LA22 6HL', status: '<span class="active-mark"><i class="fa-regular fa-check"></i></span> Active' },
-//   { id: 7, action: actionComponent, employee_id: 'ID-100221003', name: 'Shaikh Abu Dardah', photo: new URL ('/src/assets/images/avatar-2.png', import.meta.url), section: 'Development', phone: '+1 234 567 890', present_address: '75 York Road OUTGATE LA22 6HL', status: '<span class="active-mark"><i class="fa-regular fa-check"></i></span> Active' },
-//   { id: 8, action: actionComponent, employee_id: 'ID-1002210025', name: 'Shaikh Abu Dardah', photo: new URL ('/src/assets/images/avatar-2.png', import.meta.url), section: 'Development', phone: '+1 234 567 890', present_address: '75 York Road OUTGATE LA22 6HL', status: '<span class="active-mark"><i class="fa-regular fa-check"></i></span> Active' },
-//   { id: 9, action: actionComponent, employee_id: 'ID-1002210024', name: 'Shaikh Abu Dardah', photo: new URL ('/src/assets/images/avatar-2.png', import.meta.url), section: 'Development', phone: '+1 234 567 890', present_address: '75 York Road OUTGATE LA22 6HL', status: '<span class="active-mark"><i class="fa-regular fa-check"></i></span> Active' },
-//   { id: 10, action: actionComponent, employee_id: 'ID-1002210023', name: 'Shaikh Abu Dardah', photo: new URL ('/src/assets/images/avatar-2.png', import.meta.url), section: 'Development', phone: '+1 234 567 890', present_address: '75 York Road OUTGATE LA22 6HL', status: '<span class="active-mark"><i class="fa-regular fa-check"></i></span> Active' },
-//   { id: 11, action: actionComponent, employee_id: 'ID-1002210033', name: 'Shaikh Abu Dardah', photo: new URL ('/src/assets/images/avatar-2.png', import.meta.url), section: 'Development', phone: '+1 234 567 890', present_address: '75 York Road OUTGATE LA22 6HL', status: '<span class="active-mark"><i class="fa-regular fa-check"></i></span> Active' },
-//   { id: 12, action: actionComponent, employee_id: 'ID-1002210034', name: 'Shaikh Abu Dardah', photo: new URL ('/src/assets/images/avatar-2.png', import.meta.url), section: 'Development', phone: '+1 234 567 890', present_address: '75 York Road OUTGATE LA22 6HL', status: '<span class="active-mark"><i class="fa-regular fa-check"></i></span> Active' },
-// ])
 
 const dtSearch = ((searchText) => {
   table.value.updateSearch(searchText)

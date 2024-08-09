@@ -1,3 +1,6 @@
+body.light-theme{
+    background-color: #d3e7f0;
+}
 .form-label {
     margin-bottom: 7px;
     font-size: 16px
@@ -23,18 +26,20 @@
 .main-content .login-body .login-btn::after {
     background: #034f75;
 }
-.main-content .login-body .top{
+
+.main-content .login-body .top {
     height: auto;
 }
 
-.main-content .login-body .login-btn:focus::after{
+.main-content .login-body .login-btn:focus::after {
     width: unset;
 }
 
-.login-btn{
+.login-btn {
     font-size: 18px;
 }
-.footer{
+
+.footer {
     background: unset !important;
 }
 
@@ -43,11 +48,12 @@
         max-width: 100% !important;
     }
 
-    .main-content .login-body .top{
+    .main-content .login-body .top {
         height: auto;
         text-align: -webkit-center;
     }
 }
+
 .left-aligned {
     text-align: left;
 }
@@ -55,4 +61,81 @@
 /* Placeholder styling */
 .left-aligned::placeholder {
     text-align: left;
+}
+
+.light-theme .table th {
+    color: #FFFFFF;
+}
+
+.light-theme .table thead {
+    background: #034f75;
+}
+
+.light-theme .main-content .digi-dataTable thead {
+    border: 2px solid;
+    border-radius: 10px !important;
+    overflow: hidden;
+    background: #034f75;
+    color: #FFFFFF;
+}
+
+.light-theme .main-content .digi-dataTable {
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow: hidden;
+}
+
+table thead {
+    border-radius: 10px;
+}
+
+table thead th:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+table thead th:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+table tbody tr td {
+    background: white !important;
+    color: red;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-accent-bg: white !important;
+}
+
+.main-content .digi-dataTable:not(.table-borderless) tr td:first-child {
+    border-left: 0;
+}
+
+.main-content .digi-dataTable:not(.table-borderless) tr td:last-child {
+    border-right: 0;
+}
+
+.light-theme .main-content .digi-dataTable:not(.table-borderless) tr td {
+    border-color: #034f75;
+    border-bottom: 1px dashed #034f75;
+}
+
+.main-content .digi-dataTable .btn-box {
+    gap: 5px
+}
+
+.paginator-css {
+    border: 1px solid #034f75 !important;
+    width: 30px !important;;
+    height: 30px !important;;
+    align-content: center !important;;
+    background: #d3e7f0 !important;;
+    border-radius: 50% !important;;
+    color: #034f75 !important;
+}
+
+.main-content .table-bottom-control .btn.current {
+    background: #034f75 !important;
+    color: #FFFFFF !important;
 }

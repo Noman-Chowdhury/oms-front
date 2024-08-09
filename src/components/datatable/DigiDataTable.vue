@@ -157,9 +157,9 @@ defineExpose({
 </script>
 
 <template>
-  <div>
-    <slot name="filterOption" :perPageOptions="perPageOptions" :updatePerPage="updatePerPage"/>
-  </div>
+<!--  <div>-->
+<!--    <slot name="filterOption" :perPageOptions="perPageOptions" :updatePerPage="updatePerPage"/>-->
+<!--  </div>-->
 <div class="table-responsive">
   <table ref="dataTable" class="table table-dashed table-hover digi-dataTable target-audience-table table-striped" :class="classes">
     <thead>
@@ -232,20 +232,20 @@ defineExpose({
     <div class="dataTables_info">
       Showing {{ rangeStart }} to {{ rangeEnd }} of {{ totalItems }}
     </div>
-    <div class="dataTables_paginate paging_simple_numbers">
-      <a class="btn btn-primary previous" @click="prevPage" :disabled="currentPage === 1"><i class="fa-light fa-angle-left"></i></a>
+    <div class="dataTables_paginate paging_simple_numbers align-items-center">
+      <a class="btn btn-primary previous paginator-css" @click="prevPage" :disabled="currentPage === 1"><i class="fa-light fa-angle-left"></i></a>
       <span>
         <button
             v-for="pageNumber in pageNumbers"
             :key="pageNumber"
-            class="paginate_button btn btn-primary"
+            class="paginate_button btn btn-primary paginator-css"
             :class="{ current: pageNumber === currentPage }"
             @click="goToPage(pageNumber)"
         >
           {{ pageNumber }}
         </button>
       </span>
-      <a class="btn btn-primary next" @click="nextPage" :disabled="currentPage === totalPages"><i class="fa-light fa-angle-right"></i></a>
+      <a class="btn btn-primary next paginator-css" @click="nextPage" :disabled="currentPage === totalPages"><i class="fa-light fa-angle-right"></i></a>
     </div>
   </div>
 </template>
