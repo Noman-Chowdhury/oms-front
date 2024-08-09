@@ -301,11 +301,11 @@ provide('app:layout', layout.value)
     <!-- header end -->
 
     <!-- profile right sidebar start -->
-    <ProfileRightSidebarComponent v-show="isPartials"
-                                  :isActive="isActive"
-                                  :profileToggleDropdown="profileToggleDropdown"
-                                  :closeProfileSidebar="closeProfileSidebar"
-    />
+<!--    <ProfileRightSidebarComponent v-show="isPartials"-->
+<!--                                  :isActive="isActive"-->
+<!--                                  :profileToggleDropdown="profileToggleDropdown"-->
+<!--                                  :closeProfileSidebar="closeProfileSidebar"-->
+<!--    />-->
     <!-- profile right sidebar end -->
 
     <!--      <div class="right-sidebar-btn d-lg-block d-none">-->
@@ -313,11 +313,11 @@ provide('app:layout', layout.value)
     <!--      </div>-->
 
     <!-- right sidebar start -->
-    <RightSidebarComponent v-show="isPartials"
-                           :isSidebarActive="isSidebarActive"
-                           :closeSidebar="closeSidebar"
-                           :isLightTheme="isLightTheme"
-    />
+<!--    <RightSidebarComponent v-show="isPartials"-->
+<!--                           :isSidebarActive="isSidebarActive"-->
+<!--                           :closeSidebar="closeSidebar"-->
+<!--                           :isLightTheme="isLightTheme"-->
+<!--    />-->
     <!-- right sidebar end -->
 
     <!-- main sidebar start -->
