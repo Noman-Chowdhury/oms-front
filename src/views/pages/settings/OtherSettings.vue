@@ -6,6 +6,7 @@ import Loader from "@/components/Loader.vue";
 import {designationStore} from "@/stores/designation";
 import {useDepartmentStore} from "@/stores/department";
 import {useShiftStore} from "@/stores/shift";
+import {useLeaveTypeStore} from "@/stores/leaveTypes";
 
 const desTable = ref(null);
 const depTable = ref(null);
@@ -33,6 +34,7 @@ const shiftTableColumns = ref([
 const desStore = designationStore()
 const depStore = useDepartmentStore()
 const shiftStore = useShiftStore()
+const leaveTypeStore = useLeaveTypeStore()
 
 const submitDepartmentForm = async () => {
   event.preventDefault()
@@ -58,11 +60,20 @@ const submitShiftForm = async () => {
     await shiftStore.storeShift()
   }
 }
+const submitLeaveTypeForm = async () => {
+  event.preventDefault()
+  if (leaveTypeStore.leaveTypeId) {
+    await leaveTypeStore.updateData()
+  } else {
+    await leaveTypeStore.storeData()
+  }
+}
 
 onMounted(() => {
   desStore.fetchDesignations()
   depStore.fetchDepartments()
   shiftStore.fetchShifts()
+  leaveTypeStore.fetchData()
 })
 </script>
 
@@ -255,6 +266,71 @@ onMounted(() => {
                   :customHeader="true"
                   itemsPerPageCount = "5"
                   @update:selectedItems="shiftSelectedItems = $event"
+              >
+                <template #cell(action)="slotProps">
+                  <component
+                      :is="slotProps.row.action.component"
+                      v-bind="slotProps.row.action.props"
+                  />
+                </template>
+                <template #filterOption="{perPageOptions, updatePerPage}">
+                  <TableFilterOption :perPageOptions="perPageOptions" :updatePerPage="updatePerPage"/>
+                </template>
+              </data-table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--    Leave Type-->
+    <div class="col-12">
+      <div class="row d-flex align-items-stretch">
+        <div class="col-4 d-flex">
+          <div class="panel flex-grow-1">
+            <div class="panel-header primary-header">
+              <h5>
+                Leave Type Form
+              </h5>
+            </div>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-xxl-12 col-lg-12 col-sm-12">
+                  <label class="form-label">Name</label>
+                  <input type="text" class="form-control form-control-sm" placeholder="Enter Department Name"
+                         v-model="leaveTypeStore.leaveType.name">
+                </div>
+                <div class="col-xxl-12 col-lg-12 col-sm-12">
+                  <label class="form-label">Status</label>
+                  <select class="form-control form-control-sm form-select" data-placeholder="Select Status"
+                          v-model="leaveTypeStore.leaveType.status">
+                    <option value="">Select Status</option>
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>
+                  </select>
+                </div>
+                <div class="col-xxl-12 col-lg-12 col-sm-12 d-flex justify-content-end">
+                  <button class="btn btn-primary" @click="submitLeaveTypeForm">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-8">
+          <div class="panel">
+            <div class="panel-header primary-header">
+              <h5>
+                Leave Type List
+              </h5>
+            </div>
+            <div class="panel-body">
+              <data-table
+                  ref="depTable"
+                  :data="leaveTypeStore.leaveTypes"
+                  :columns="desTableColumns"
+                  :selectedItems="depSelectedItems"
+                  :customHeader="true"
+                  itemsPerPageCount = "3"
+                  @update:selectedItems="depSelectedItems = $event"
               >
                 <template #cell(action)="slotProps">
                   <component
