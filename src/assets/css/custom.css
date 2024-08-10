@@ -1,6 +1,7 @@
-body.light-theme{
+body.light-theme {
     background-color: #d3e7f0;
 }
+
 .form-label {
     margin-bottom: 7px;
     font-size: 16px
@@ -139,7 +140,7 @@ table tbody tr td {
     color: #FFFFFF !important;
 }
 
-.header{
+.header {
     position: relative !important;
     margin-left: 25px !important;
     margin-right: 25px !important;
@@ -151,7 +152,7 @@ table tbody tr td {
     padding-top: 25px !important;
 }
 
-.main-sidebar{
+.main-sidebar {
     top: 25px !important;
     left: 25px !important;
     bottom: 25px !important;
@@ -168,10 +169,11 @@ table tbody tr td {
     background: #d3e7f0 !important;
 }
 
-.light-theme .main-sidebar{
+.light-theme .main-sidebar {
     background: #034f75 !important;
 }
-.main-sidebar::after{
+
+.main-sidebar::after {
     width: unset !important;
 }
 
@@ -179,47 +181,49 @@ table tbody tr td {
     color: #FFFFFF;
 }
 
-.sidebar-item{
+.sidebar-item {
     border: unset !important;
     font-weight: 700;
 }
 
-.sidebar-item .sidebar-dropdown-item .sidebar-link:hover, .sidebar-item .sidebar-dropdown-item .sidebar-link.active{
+.sidebar-item .sidebar-dropdown-item .sidebar-link:hover, .sidebar-item .sidebar-dropdown-item .sidebar-link.active {
     background: #FFFFFF;
     color: #034f75;
     border-radius: 44px;
 }
 
-.light-theme .sidebar-item .sidebar-dropdown-item .sidebar-link:hover .nav-icon, .light-theme .sidebar-item .sidebar-dropdown-item .sidebar-link.active .nav-icon{
+.light-theme .sidebar-item .sidebar-dropdown-item .sidebar-link:hover .nav-icon, .light-theme .sidebar-item .sidebar-dropdown-item .sidebar-link.active .nav-icon {
     color: #034f75;
 }
 
-.light-theme .sidebar-item .sidebar-link .nav-icon:hover, .light-theme .sidebar-item .sidebar-dropdown-item .sidebar-link:hover{
+.light-theme .sidebar-item .sidebar-link .nav-icon:hover, .light-theme .sidebar-item .sidebar-dropdown-item .sidebar-link:hover {
     background: #034f75;
     color: #FFFFFF;
-    .nav-icon{
+
+    .nav-icon {
         color: #FFFFFF;
     }
 }
 
-.primary-font{
+.primary-font {
     color: #034f75;
 }
 
-.light-theme .header-right-btns .header-form{
+.light-theme .header-right-btns .header-form {
     background: #d3e7f0;
     border-radius: 44px;
     color: #034f75;
 }
 
-.light-theme .header-right-btns .header-form input{
+.light-theme .header-right-btns .header-form input {
     color: #034f75;
 }
 
-.header-right-btns .header-form:focus-within{
+.header-right-btns .header-form:focus-within {
     border: unset !important;
 }
-[type=search]::placeholder{
+
+[type=search]::placeholder {
     color: #034f75;
 }
 
@@ -227,4 +231,18 @@ table tbody tr td {
     border-radius: 50%;
     width: 90%;
     height: 90%;
+}
+
+.primary-header {
+    background: #034f75;
+    h5{
+        color: #FFFFFF !important;
+    }
+}
+
+.light-theme .main-content .digi-dataTable .custom {
+    background: #ffffff !important;
+    th{
+        color: #000000 !important;
+    }
 }

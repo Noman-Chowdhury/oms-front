@@ -1,7 +1,7 @@
 <script setup>
 import {computed, ref, watch} from "vue";
 
-const props = defineProps(['data', 'columns', 'selectedItems', 'handleRowClick', 'classes'])
+const props = defineProps(['data', 'columns', 'selectedItems', 'handleRowClick', 'classes','customHeader'])
 const emit = defineEmits(['update:selectedItems'])
 
 const selectAll = ref(false);
@@ -163,7 +163,7 @@ defineExpose({
   <div class="table-responsive">
     <table ref="dataTable" class="table table-dashed table-hover digi-dataTable target-audience-table table-striped"
            :class="classes">
-      <thead>
+      <thead :class="customHeader ? 'custom' : ''">
       <tr>
         <th v-for="column in columns" :key="column.key" :class="column.align? 'text-'+column.align : 'text-center'">
           <div v-if="column.type === 'checkbox'" class="form-check">
