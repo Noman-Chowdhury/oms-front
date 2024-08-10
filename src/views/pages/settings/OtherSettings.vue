@@ -115,6 +115,7 @@ onMounted(() => {
                   :columns="desTableColumns"
                   :selectedItems="depSelectedItems"
                   :customHeader="true"
+                  itemsPerPageCount = "3"
                   @update:selectedItems="depSelectedItems = $event"
               >
                 <template #cell(action)="slotProps">
@@ -179,6 +180,7 @@ onMounted(() => {
                   :columns="desTableColumns"
                   :selectedItems="selectedItems"
                   :customHeader="true"
+                  itemsPerPageCount = "3"
                   @update:selectedItems="selectedItems = $event"
               >
                 <template #cell(action)="slotProps">
@@ -251,6 +253,7 @@ onMounted(() => {
                   :columns="shiftTableColumns"
                   :selectedItems="shiftSelectedItems"
                   :customHeader="true"
+                  itemsPerPageCount = "5"
                   @update:selectedItems="shiftSelectedItems = $event"
               >
                 <template #cell(action)="slotProps">

@@ -1,15 +1,15 @@
 <script setup>
 import {computed, ref, watch} from "vue";
 
-const props = defineProps(['data', 'columns', 'selectedItems', 'handleRowClick', 'classes','customHeader'])
+const props = defineProps(['data', 'columns', 'selectedItems', 'handleRowClick', 'classes','customHeader','itemsPerPageCount'])
 const emit = defineEmits(['update:selectedItems'])
 
 const selectAll = ref(false);
 const currentPage = ref(1);
-const itemsPerPage = ref(10);
+const itemsPerPage = ref(props.itemsPerPageCount ?? 10);
 const sortColumn = ref(null);
 const sortOrder = ref('asc');
-const perPageOptions = ref([10, 25, 50, 100]);
+const perPageOptions = ref([3,5,10, 25, 50, 100]);
 const search = ref('');
 const dataTable = ref(null);
 
