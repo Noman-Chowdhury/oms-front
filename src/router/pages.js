@@ -68,6 +68,12 @@ export const pagesRoutes = [
         meta: {layout: 'AppLayout', isPartials: true, isUser: true},
     },
     {
+        path: '/edit-employee',
+        component: () => import('@/views/apps/hrm/EditEmployee.vue'),
+        name: 'hrm_add_employee',
+        meta: {layout: 'AppLayout', isPartials: true, isUser: true},
+    },
+    {
         path: '/all-employee',
         component: () => import('@/views/apps/hrm/AllEmployee.vue'),
         name: 'all_employee',

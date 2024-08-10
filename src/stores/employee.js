@@ -104,22 +104,38 @@ export const useEmployeeStore = defineStore('employee', {
         },
         async updateEmployee() {
             try {
-                await userAxiosInstance.put(`/designations/${this.designationId}`, this.designation)
+                await userAxiosInstance.put(`/employees/${this.employeeId}`, this.employee)
                     .then((res) => {
                         $toast.success(res.data.message)
                         this.resetEmployeeState();
+                        this.fetchEmployees()
+                        this.employeeId = null
+                        this.resetEmployeeState();
+                        router.push({name: 'all_employee'});
                     })
             } catch (error) {
                 console.log('Error wile adding designation :', error)
             }
         },
-        async deleteDesignation() {
+        async getEmployee() {
             try {
-                await userAxiosInstance.delete(`/designations/${this.designationId}`)
+                await userAxiosInstance.get(`/employees/${this.employeeId}`)
+                    .then((response) => {
+                        const resData = response.data
+                        console.log(resData.data.info)
+                        this.employee = resData.data.info
+                    })
+            } catch (error) {
+                console.log('Error wile adding designation :', error)
+            }
+        },
+        async deleteEmployee() {
+            try {
+                await userAxiosInstance.delete(`/employees/${this.employeeId}`)
                     .then((res) => {
                         $toast.success(res.data.message)
-                        this.fetchDesignations()
-                        this.designationId = null
+                        this.fetchEmployees()
+                        this.employeeId = null
                     })
             } catch (error) {
                 console.log('Error wile adding designation :', error)
@@ -129,15 +145,5 @@ export const useEmployeeStore = defineStore('employee', {
             this.employee = getInitialEmployeeState();
         }
     },
-    setters: () => ({
-        setDesignation(data) {
-            this.designation.name = data.name
-            this.designation.status = data.status
-        }
-    }),
-    getters: {
-        getUpdatableDesignationId() {
-            return this.state.designationId
-        }
-    }
+
 })

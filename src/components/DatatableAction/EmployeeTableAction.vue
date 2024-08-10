@@ -1,8 +1,8 @@
 <script setup>
 import {defineProps} from 'vue';
-import {designationStore} from "@/stores/designation";
 import Swal from "sweetalert2";
 import {useEmployeeStore} from "@/stores/employee";
+import {useRouter} from "vue-router";
 
 const props = defineProps({
   employee: {
@@ -12,9 +12,11 @@ const props = defineProps({
 });
 
 const employeeStore = useEmployeeStore();
-
+const router = useRouter()
 const handleEdit = () => {
   employeeStore.employeeId = props.employee.id
+  employeeStore.getEmployee()
+  router.push('edit-employee')
 };
 
 const handleDelete = () => {
@@ -29,7 +31,7 @@ const handleDelete = () => {
   }).then((result) => {
     if (result.isConfirmed) {
       employeeStore.employeeId = props.employee.id
-      employeeStore.deleteDesignation()
+      employeeStore.deleteEmployee()
     }
   });
 };
