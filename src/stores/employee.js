@@ -2,11 +2,13 @@ import {defineStore} from "pinia";
 
 import {useToast} from "vue-toast-notification";
 import {userAxiosInstance} from "@/plugins/axiosInstance";
-import {formatStatus} from "@/utils/formatStatus";
 import {shallowRef} from "vue";
-import DesignationTableAction from "@/components/DatatableAction/DesignationTableAction.vue";
 import AllEmployeeTableAction from "@/components/DatatableAction/AllEmployeeTableAction.vue";
 import router from "@/router";
+import NameWithImage from "@/components/employee/NameWithImage.vue";
+import Position from "@/components/employee/Position.vue";
+import {formatStatus} from "@/utils/formatStatus";
+import EmployeeTableAction from "@/components/DatatableAction/EmployeeTableAction.vue";
 
 const $toast = useToast();
 const getInitialEmployeeState = () => ({
@@ -56,8 +58,17 @@ export const useEmployeeStore = defineStore('employee', {
                     const resData = response.data
                     this.employees = resData.data.lists.map(employee => ({
                         ...employee,
+                        nameImage: {
+                            component: shallowRef(NameWithImage),
+                            props: {employee}
+                        },
+                        position: {
+                            component: shallowRef(Position),
+                            props: {employee}
+                        },
+                        status: formatStatus(employee.status),
                         action: {
-                            component: shallowRef(AllEmployeeTableAction),
+                            component: shallowRef(EmployeeTableAction),
                             props: {employee}
                         }
                     }))

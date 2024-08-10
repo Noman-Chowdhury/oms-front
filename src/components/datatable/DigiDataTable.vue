@@ -1,7 +1,7 @@
 <script setup>
 import {computed, ref, watch} from "vue";
 
-const props = defineProps(['data', 'columns', 'selectedItems','handleRowClick', 'classes'])
+const props = defineProps(['data', 'columns', 'selectedItems', 'handleRowClick', 'classes'])
 const emit = defineEmits(['update:selectedItems'])
 
 const selectAll = ref(false);
@@ -44,13 +44,13 @@ const pageNumbers = computed(() => {
   const halfMaxVisiblePages = Math.floor(maxVisiblePages / 2);
 
   if (totalPages.value <= maxVisiblePages) {
-    return Array.from({ length: totalPages.value }, (_, index) => index + 1);
+    return Array.from({length: totalPages.value}, (_, index) => index + 1);
   } else if (currentPage.value <= halfMaxVisiblePages) {
-    return Array.from({ length: maxVisiblePages }, (_, index) => index + 1);
+    return Array.from({length: maxVisiblePages}, (_, index) => index + 1);
   } else if (currentPage.value >= totalPages.value - halfMaxVisiblePages) {
-    return Array.from({ length: maxVisiblePages }, (_, index) => totalPages.value - maxVisiblePages + index + 1);
+    return Array.from({length: maxVisiblePages}, (_, index) => totalPages.value - maxVisiblePages + index + 1);
   } else {
-    return Array.from({ length: maxVisiblePages }, (_, index) => currentPage.value - halfMaxVisiblePages + index);
+    return Array.from({length: maxVisiblePages}, (_, index) => currentPage.value - halfMaxVisiblePages + index);
   }
 })
 
@@ -139,15 +139,15 @@ const updatePerPage = ((perPage) => {
   itemsPerPage.value = perPage
 })
 
-const updateSearch = ((searchText) =>{
+const updateSearch = ((searchText) => {
   currentPage.value = 1;
   search.value = searchText
 })
 
 const handleRowClick = ((row) => {
-   if (props.handleRowClick){
-     props.handleRowClick(row)
-   }
+  if (props.handleRowClick) {
+    props.handleRowClick(row)
+  }
 })
 
 defineExpose({
@@ -157,83 +157,88 @@ defineExpose({
 </script>
 
 <template>
-<!--  <div>-->
-<!--    <slot name="filterOption" :perPageOptions="perPageOptions" :updatePerPage="updatePerPage"/>-->
-<!--  </div>-->
-<div class="table-responsive">
-  <table ref="dataTable" class="table table-dashed table-hover digi-dataTable target-audience-table table-striped" :class="classes">
-    <thead>
-    <tr>
-      <th v-for="column in columns" :key="column.key" class="">
-        <div v-if="column.type === 'checkbox'" class="form-check">
-          <input type="checkbox" v-model="selectAll" value="true" class="form-check-input" @change="selectAllItems" />
-        </div>
-        <span @click="column.sortable && sortBy(column.key)">
+  <!--  <div>-->
+  <!--    <slot name="filterOption" :perPageOptions="perPageOptions" :updatePerPage="updatePerPage"/>-->
+  <!--  </div>-->
+  <div class="table-responsive">
+    <table ref="dataTable" class="table table-dashed table-hover digi-dataTable target-audience-table table-striped"
+           :class="classes">
+      <thead>
+      <tr>
+        <th v-for="column in columns" :key="column.key" :class="column.align? 'text-'+column.align : 'text-center'">
+          <div v-if="column.type === 'checkbox'" class="form-check">
+            <input type="checkbox" v-model="selectAll" value="true" class="form-check-input" @change="selectAllItems"/>
+          </div>
+          <span @click="column.sortable && sortBy(column.key)">
           <span v-if="column.type === 'html'" v-html="column.label"></span>
           <span v-else>{{ column.label }}</span>
           <span v-if="column.sortable && sortColumn === column.key">
               {{ sortOrder === 'asc' ? '▲' : '▼' }}
             </span>
         </span>
-      </th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr v-for="row in paginatedData" :key="row.id">
-      <td v-for="column in columns" :key="column.key">
-        <template v-if="column.type && column.type === 'component' && !row[column.key].component">
-          <component :is="row[column.key]"></component>
-        </template>
-        <template v-if="column.type && column.type === 'component' && row[column.key].component">
-          <component :is="row[column.key].component" :data="row[column.key].data" v-bind="row[column.key].props"></component>
-        </template>
-        <template v-else-if="column.type && column.type === 'link'">
-          <router-link :to="row[column.key].url">{{ row[column.key].name }}</router-link>
-        </template>
-        <!-- Display a checkbox if the column type is 'checkbox' -->
-        <template v-else-if="column.type === 'checkbox'">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" v-model="selectedIds" :value="row.id">
-          </div>
-        </template>
-        <template v-else-if="column.type === 'switch'">
-          <div class="form-check form-switch float-end">
-            <input class="form-check-input" type="checkbox" role="switch" :checked="row[column.key]">
-          </div>
-        </template>
-        <!-- Display image if the column type is 'image' -->
-        <template v-else-if="column.type === 'image'">
-          <div class="avatar">
-            <img :src="row[column.key]" alt="Image">
-          </div>
-        </template>
-        <!-- Display dropdown if the column type is 'dropdown' -->
-        <template v-else-if="column.type === 'dropdown'">
-          <select v-model="row[column.key]">
-            <option v-for="option in column.options" :key="option">{{ option }}</option>
-          </select>
-        </template>
-        <template v-else-if="column.type === 'html'">
-          <div class="" v-html="row[column.key]"></div>
-        </template>
-        <!-- Display regular text for other column types -->
-        <template v-else>
-          <template v-if="column.type === undefined">
-            <span v-if="column.class" :class="column.class" @click.prevent="handleRowClick(row)">{{ row[column.key] }}</span>
-            <span v-else @click.prevent="handleRowClick(row)">{{ row[column.key] }}</span>
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-for="row in paginatedData" :key="row.id">
+        <td v-for="column in columns" :key="column.key" :class="column.align==='left'? 'text-left': 'text-center'">
+          <template v-if="column.type && column.type === 'component' && !row[column.key].component">
+            <component :is="row[column.key]"></component>
           </template>
-        </template>
-      </td>
-    </tr>
-    </tbody>
-  </table>
-</div>
+          <template v-if="column.type && column.type === 'component' && row[column.key].component">
+            <component :is="row[column.key].component" :data="row[column.key].data"
+                       v-bind="row[column.key].props"></component>
+          </template>
+          <template v-else-if="column.type && column.type === 'link'">
+            <router-link :to="row[column.key].url">{{ row[column.key].name }}</router-link>
+          </template>
+          <!-- Display a checkbox if the column type is 'checkbox' -->
+          <template v-else-if="column.type === 'checkbox'">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" v-model="selectedIds" :value="row.id">
+            </div>
+          </template>
+          <template v-else-if="column.type === 'switch'">
+            <div class="form-check form-switch float-end">
+              <input class="form-check-input" type="checkbox" role="switch" :checked="row[column.key]">
+            </div>
+          </template>
+          <!-- Display image if the column type is 'image' -->
+          <template v-else-if="column.type === 'image'">
+            <div class="avatar">
+              <img :src="row[column.key]" alt="Image">
+            </div>
+          </template>
+          <!-- Display dropdown if the column type is 'dropdown' -->
+          <template v-else-if="column.type === 'dropdown'">
+            <select v-model="row[column.key]">
+              <option v-for="option in column.options" :key="option">{{ option }}</option>
+            </select>
+          </template>
+          <template v-else-if="column.type === 'html'">
+            <div class="" v-html="row[column.key]"></div>
+          </template>
+          <!-- Display regular text for other column types -->
+          <template v-else>
+            <template v-if="column.type === undefined">
+              <span v-if="column.class" :class="column.class" @click.prevent="handleRowClick(row)">{{
+                  row[column.key]
+                }}</span>
+              <span v-else @click.prevent="handleRowClick(row)">{{ row[column.key] }}</span>
+            </template>
+          </template>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
   <div class="table-bottom-control">
     <div class="dataTables_info">
       Showing {{ rangeStart }} to {{ rangeEnd }} of {{ totalItems }}
     </div>
     <div class="dataTables_paginate paging_simple_numbers align-items-center">
-      <a class="btn btn-primary previous paginator-css" @click="prevPage" :disabled="currentPage === 1"><i class="fa-light fa-angle-left"></i></a>
+      <a class="btn btn-primary previous paginator-css" @click="prevPage" :disabled="currentPage === 1"><i
+          class="fa-light fa-angle-left"></i></a>
       <span>
         <button
             v-for="pageNumber in pageNumbers"
@@ -245,7 +250,8 @@ defineExpose({
           {{ pageNumber }}
         </button>
       </span>
-      <a class="btn btn-primary next paginator-css" @click="nextPage" :disabled="currentPage === totalPages"><i class="fa-light fa-angle-right"></i></a>
+      <a class="btn btn-primary next paginator-css" @click="nextPage" :disabled="currentPage === totalPages"><i
+          class="fa-light fa-angle-right"></i></a>
     </div>
   </div>
 </template>

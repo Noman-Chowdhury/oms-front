@@ -21,19 +21,21 @@ const isSearch = ref(true);
 const employeeStore = useEmployeeStore()
 
 const tableColumns = ref([
-  {label: "Action", key: "action", type: "component"},
-  {label: "Employee ID", key: "employee_id", sortable: true},
-  {label: "Photo", key: "photo_url", sortable: false, type: "image"},
-  {label: "Name", key: "name", sortable: true},
-  {label: "Phone", key: "phone_number", sortable: true},
-  {label: "Present Address", key: "name", sortable: true},
+  {label: "Name", key: "nameImage", type: "component", align: "left"},
+  {label: "Position", key: "position", type: "component"},
+  {label: "Phone", key: "phone", sortable: true},
+  {label: "Email", key: "email", sortable: true,},
+  {label: "Shift", key: "shift", sortable: true},
+  {label: "Today", key: "present_today", sortable: true},
+  {label: "Status", key: "status", type: "html"},
+  {label: "Action", key: "action", type: "component",  align: "right"},
 ]);
 
 const dtSearch = ((searchText) => {
   table.value.updateSearch(searchText)
 })
 
-onMounted(()=>{
+onMounted(() => {
   employeeStore.fetchEmployees()
 })
 
