@@ -216,7 +216,7 @@ defineExpose({
             </select>
           </template>
           <template v-else-if="column.type === 'html'">
-            <div class="" v-html="row[column.key]"></div>
+            <div v-html="row[column.key]"></div>
           </template>
           <!-- Display regular text for other column types -->
           <template v-else>

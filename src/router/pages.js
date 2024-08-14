@@ -17,7 +17,13 @@ export const pagesRoutes = [
         path: '/other-settings',
         component: () => import('@/views/pages/settings/OtherSettings.vue'),
         name: 'otherSettings',
-        meta: {layout: 'AdminLayout', isPartials: true, isUser: true},
+        meta: {layout: 'AppLayout', isPartials: true, isUser: true},
+    },
+    {
+        path: '/users',
+        component: () => import('@/views/pages/AllUsers.vue'),
+        name: 'users',
+        meta: {layout: 'AppLayout', isPartials: true, isUser: true},
     },
     {
         path: '/crm-dashboard',

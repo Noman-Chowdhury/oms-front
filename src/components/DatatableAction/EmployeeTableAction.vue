@@ -18,6 +18,11 @@ const handleEdit = () => {
   employeeStore.getEmployee()
   router.push('edit-employee')
 };
+const handleView = () => {
+  employeeStore.employeeId = props.employee.id
+  employeeStore.getEmployee()
+  router.push('edit-employee')
+};
 
 const handleDelete = () => {
   Swal.fire({
@@ -39,8 +44,9 @@ const handleDelete = () => {
 
 <template>
   <div class="btn-box">
+    <button @click="handleView" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></button>
     <button @click="handleEdit" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen"></i></button>
-    <button @click="handleDelete" class="btn btn-sm btn-primary"><i class="fa-solid fa-trash"></i></button>
+<!--    <button @click="handleDelete" class="btn btn-sm btn-primary"><i class="fa-solid fa-trash"></i></button>-->
   </div>
 </template>
 

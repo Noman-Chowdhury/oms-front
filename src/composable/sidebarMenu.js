@@ -15,6 +15,11 @@ export const userSidebarMenus = ref([
                 icon: 'fa-light fa-cart-shopping-fast'
             },
             {
+                name: 'Users',
+                link_name: 'users',
+                icon: 'fa-solid fa-users'
+            },
+            {
                 name: 'Settings',
                 icon: 'fa-light fa-home',
                 sub_menus: [

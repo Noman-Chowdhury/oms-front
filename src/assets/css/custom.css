@@ -241,8 +241,14 @@ table tbody tr td {
 }
 
 .light-theme .main-content .digi-dataTable .custom {
-    background: #ffffff !important;
+    background: #d3e7f0 !important;
     th{
         color: #000000 !important;
     }
+}
+
+.badge{
+    border: 2px solid black;
+    font-weight: bold;
+    color: black;
 }
