@@ -12,6 +12,8 @@ export const formatStatus = (status) => {
             return '<span class="badge bg-danger">Unpaid</span>';
         case 'Canceled':
             return '<span class="badge bg-danger">Canceled</span>';
+        case 'In Time':
+            return '<span class="text-success"> ' + status.toString().toUpperCase() + '</span>';
         default:
             return '<span class="badge bg-secondary">Unknown</span>';
     }

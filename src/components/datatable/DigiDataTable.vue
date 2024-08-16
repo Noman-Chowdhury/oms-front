@@ -1,7 +1,7 @@
 <script setup>
 import {computed, ref, watch} from "vue";
 
-const props = defineProps(['data', 'columns', 'selectedItems', 'handleRowClick', 'classes','customHeader','itemsPerPageCount'])
+const props = defineProps(['data', 'columns', 'selectedItems', 'handleRowClick', 'classes', 'customHeader', 'itemsPerPageCount'])
 const emit = defineEmits(['update:selectedItems'])
 
 const selectAll = ref(false);
@@ -9,7 +9,7 @@ const currentPage = ref(1);
 const itemsPerPage = ref(props.itemsPerPageCount ?? 10);
 const sortColumn = ref(null);
 const sortOrder = ref('asc');
-const perPageOptions = ref([3,5,10, 25, 50, 100]);
+const perPageOptions = ref([3, 5, 10, 25, 50, 100]);
 const search = ref('');
 const dataTable = ref(null);
 
@@ -165,7 +165,8 @@ defineExpose({
            :class="classes">
       <thead :class="customHeader ? 'custom' : ''">
       <tr>
-        <th v-for="column in columns" :key="column.key" :class="column.align? 'text-'+column.align : 'text-center'">
+        <th v-for="column in columns" :key="column.key"
+            :class="[column.align ? 'text-'+column.align : 'text-center',column.customClass ? column.customClass : '']">
           <div v-if="column.type === 'checkbox'" class="form-check">
             <input type="checkbox" v-model="selectAll" value="true" class="form-check-input" @change="selectAllItems"/>
           </div>

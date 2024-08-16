@@ -1,4 +1,4 @@
-import HomeView from '@/views/dashboard/eCommerceDashboard.vue'
+import HomeView from '@/views/dashboard/CompanyUserDashboard.vue'
 
 export const pagesRoutes = [
     {
@@ -23,6 +23,12 @@ export const pagesRoutes = [
         path: '/users',
         component: () => import('@/views/pages/AllUsers.vue'),
         name: 'users',
+        meta: {layout: 'AppLayout', isPartials: true, isUser: true},
+    },
+    {
+        path: '/attendances',
+        component: () => import('@/views/pages/Attendances.vue'),
+        name: 'attendances',
         meta: {layout: 'AppLayout', isPartials: true, isUser: true},
     },
     {

@@ -20,6 +20,11 @@ export const userSidebarMenus = ref([
                 icon: 'fa-solid fa-users'
             },
             {
+                name: 'Attendances',
+                link_name: 'attendances',
+                icon: 'fa-solid fa-users'
+            },
+            {
                 name: 'Settings',
                 icon: 'fa-light fa-home',
                 sub_menus: [

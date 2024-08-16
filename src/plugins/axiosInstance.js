@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-console.log(11)
 const adminAxiosInstance = axios.create({
     baseURL: `${import.meta.env.VITE_APP_URL}/api/admin`,
     headers: {

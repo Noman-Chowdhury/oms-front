@@ -206,7 +206,7 @@ table tbody tr td {
 }
 
 .primary-font {
-    color: #034f75;
+    color: #034f75 !important;
 }
 
 .light-theme .header-right-btns .header-form {
@@ -235,20 +235,121 @@ table tbody tr td {
 
 .primary-header {
     background: #034f75;
-    h5{
+
+    h1 {
+        color: #FFFFFF !important;
+    }
+    h5 {
         color: #FFFFFF !important;
     }
 }
 
 .light-theme .main-content .digi-dataTable .custom {
     background: #d3e7f0 !important;
-    th{
+
+    th {
         color: #000000 !important;
     }
 }
 
-.badge{
+.badge {
     border: 2px solid black;
     font-weight: bold;
     color: black;
+}
+
+.attendanceButton {
+    width: 328px;
+    height: 64px;
+    border-radius: 32px;
+    font-weight: 700;
+    font-size: 28px;
+}
+
+.timerFont {
+    font-size: 80px;
+}
+
+.panel {
+    border-radius: 16px;
+}
+
+.summaryCount {
+    border: 2px solid #034f75;
+    color:  #034f75;
+    border-radius: 8px;
+    padding: 10px 30px;
+    background: #d3e7f0;
+}
+
+.rightMargin20{
+    margin-right: 20px
+}
+
+.primary-background{
+    background: #034f75;
+}
+.circleBorder{
+    border-radius: 50%;
+}
+
+.date-font{
+    color: #FFFFFF;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.custom-table-header-primary span{
+    background: #034f75 !important;
+    color: #FFFFFF !important;;
+    padding: 5px 15px !important;;
+    border-radius: 8px !important;;
+}
+
+.activity-feed {
+    padding: 15px;
+    list-style: none;
+
+    .feed-item {
+        position: relative;
+        padding-bottom: 20px;
+        padding-left: 30px;
+        border-left: 2px solid #e4e8eb;
+
+        &:last-child {
+            border-color: transparent;
+        }
+
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: -13px;
+            width: 24px;
+            height: 24px;
+            border-radius: 30px;
+            background: #d3e7f0;
+            border: 1px solid #d3e7f0;
+        }
+
+        .date {
+            display: block;
+            position: relative;
+            top: -5px;
+            color: #034f75;
+            /*text-transform: uppercase;*/
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .text {
+            position: relative;
+            top: -3px;
+            color: #8E8E8E;
+        }
+    }
+}
+
+.fa-circle-arrow-down-right:before{
+    color: #034f75;
 }
