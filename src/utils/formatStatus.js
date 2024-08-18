@@ -1,6 +1,7 @@
 export const formatStatus = (status) => {
     switch (status) {
         case 'pending':
+        case 'In Review':
             return '<span class="badge bg-warning">' + status.toString().toUpperCase() + '</span>';
         case 'approved':
         case 'active':

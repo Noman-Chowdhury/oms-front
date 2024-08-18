@@ -49,7 +49,7 @@ onMounted(() => {
             <button class="btn btn-primary attendanceButton" v-if="attendanceStore.entered && !attendanceStore.exited" @click="addAttendance">Click
               To Exit
             </button>
-            <button class="btn btn-primary attendanceButton" v-if="attendanceStore.entered && attendanceStore.exited" >Attendance Updated
+            <button class="btn btn-primary attendanceButton" v-else-if="attendanceStore.entered && attendanceStore.exited" >Attendance Updated
             </button>
             <button class="btn btn-primary attendanceButton" v-else @click="addAttendance">Click To Enter</button>
             <div class="mt-4 mb-2 text-center">

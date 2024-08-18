@@ -25,6 +25,11 @@ export const userSidebarMenus = ref([
                 icon: 'fa-solid fa-users'
             },
             {
+                name: 'Leaves',
+                link_name: 'leaves',
+                icon: 'fa-solid fa-users'
+            },
+            {
                 name: 'Settings',
                 icon: 'fa-light fa-home',
                 sub_menus: [

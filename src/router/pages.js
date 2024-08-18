@@ -32,6 +32,12 @@ export const pagesRoutes = [
         meta: {layout: 'AppLayout', isPartials: true, isUser: true},
     },
     {
+        path: '/leaves',
+        component: () => import('@/views/pages/Leaves.vue'),
+        name: 'leaves',
+        meta: {layout: 'AppLayout', isPartials: true, isUser: true},
+    },
+    {
         path: '/crm-dashboard',
         component: () => import('@/views/dashboard/CrmDashboard.vue'),
         name: 'crm_dashboard',
