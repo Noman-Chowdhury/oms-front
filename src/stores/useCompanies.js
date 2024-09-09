@@ -1,6 +1,6 @@
 // stores/useCompanyStore.js
 import {defineStore} from 'pinia';
-import {adminAxiosInstance} from "@/plugins/axiosInstance";
+import {adminAxiosInstance, userAxiosInstance} from "@/plugins/axiosInstance";
 import {formatStatus} from "@/utils/formatStatus";
 import {shallowRef} from "vue";
 import CompanyTableAction from "@/Admin/components/DatatableAction/CompanyTableAction.vue";
@@ -11,7 +11,8 @@ const $toast = useToast({position: 'top-right'});
 export const useCompanyStore = defineStore('company', {
     state: () => ({
         companies: [],
-        loading: false
+        loading: false,
+        company: {}
     }),
     actions: {
         async fetchCompanies() {
@@ -46,6 +47,20 @@ export const useCompanyStore = defineStore('company', {
                 console.error('Error approving company:', error);
             }
             this.loading = false;
+        },
+        async fetchCompanyInfo() {
+            try {
+                this.loading = true;
+                await userAxiosInstance.get(`/my-company-info`)
+                    .then((response) => {
+                        const resData = response.data
+                        this.company = resData.data.info
+                    });
+            } catch (error) {
+                console.error('Error approving company:', error);
+            }
+            this.loading = false;
         }
+
     }
 });

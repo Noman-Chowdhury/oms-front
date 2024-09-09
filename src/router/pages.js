@@ -20,6 +20,12 @@ export const pagesRoutes = [
         meta: {layout: 'AppLayout', isPartials: true, isUser: true},
     },
     {
+        path: '/company-settings',
+        component: () => import('@/views/pages/settings/CompanySettings.vue'),
+        name: 'companySettings',
+        meta: {layout: 'AppLayout', isPartials: true, isUser: true},
+    },
+    {
         path: '/users',
         component: () => import('@/views/pages/AllUsers.vue'),
         name: 'users',
@@ -35,6 +41,24 @@ export const pagesRoutes = [
         path: '/leaves',
         component: () => import('@/views/pages/Leaves.vue'),
         name: 'leaves',
+        meta: {layout: 'AppLayout', isPartials: true, isUser: true},
+    },
+    {
+        path: '/payrolls',
+        component: () => import('@/views/pages/payroll/List.vue'),
+        name: 'payrolls',
+        meta: {layout: 'AppLayout', isPartials: true, isUser: true},
+    },
+    {
+        path: '/payrolls/create',
+        component: () => import('@/views/pages/payroll/Form.vue'),
+        name: 'payrolls_create',
+        meta: {layout: 'AppLayout', isPartials: true, isUser: true},
+    },
+    {
+        path: '/calendar',
+        component: () => import('@/views/apps/Calendar.vue'),
+        name: 'calendar',
         meta: {layout: 'AppLayout', isPartials: true, isUser: true},
     },
     {
@@ -131,12 +155,6 @@ export const pagesRoutes = [
         path: '/order',
         component: () => import('@/views/apps/ecommerce/Order.vue'),
         name: 'order',
-        meta: {layout: 'AppLayout', isPartials: true},
-    },
-    {
-        path: '/calendar',
-        component: () => import('@/views/apps/Calendar.vue'),
-        name: 'calendar',
         meta: {layout: 'AppLayout', isPartials: true},
     },
     {

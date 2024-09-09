@@ -30,12 +30,22 @@ export const userSidebarMenus = ref([
                 icon: 'fa-solid fa-users'
             },
             {
+                name: 'Payrolls',
+                link_name: 'payrolls',
+                icon: 'fa-solid fa-users'
+            },
+            {
+                name: 'Calender',
+                link_name: 'calendar',
+                icon: 'fa-solid fa-users'
+            },
+            {
                 name: 'Settings',
                 icon: 'fa-light fa-home',
                 sub_menus: [
                     {
                         name: 'Company Settings',
-                        link_name: null
+                        link_name: 'companySettings'
                     },
                     {
                         name: 'Other Settings',

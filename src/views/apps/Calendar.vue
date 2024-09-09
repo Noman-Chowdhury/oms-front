@@ -12,7 +12,10 @@ import EventModalComponent from "@/components/modals/EventModalComponent.vue";
 import EventDeleteModal from "@/components/modals/EventDeleteModal.vue";
 import ModalWindow from "@/components/ModalWindow.vue";
 import {initCalendar} from "@/composable/dashboardManage";
+import {useCalenderStore} from "@/stores/calenders";
 const e = new Date(l.now());
+
+const calenderStore = useCalenderStore()
 
 const currentEvents = ref([]);
 const deleteEvent = ref({});
@@ -75,12 +78,17 @@ const calendarOptions = ref({
     center: 'title',
     right: 'dayGridMonth,timeGridWeek,timeGridDay'
   },
-  dateClick: handleDateClick,
-  select: handleDateSelect,
-  eventClick: handleEventClick,
+  dateClick: false,
+  // dateClick: handleDateClick,
+  select: false,
+  // select: handleDateSelect,
+  eventClick: false,
+  // eventClick: handleEventClick,
   eventsSet: handleEvents,
-  editable: true,
-  droppable: true,
+  editable: false,
+  // editable: true,
+  droppable: false,
+  // droppable: true,
   selectable: !0,
   events: []
 });
@@ -100,29 +108,23 @@ const addNewEvent = ((payload) => {
 onMounted(() => {
 
   initCalendar();
+  calenderStore.fetchHolidays()
 
-  var containerEl = document.getElementById('external-events');
-  new Draggable(containerEl, {
-    itemSelector: '.fc-event',
-    eventData: function (eventEl) {
-      return {
-        title: eventEl.innerText
-      };
-    }
-  });
 
-  currentEvents.value = [
-    { id: 1, title: "Important meeting", start: e.value, end: e.value, classNames: "bg-success" },
-    { id: 2, title: "Factory visit", start: new Date(l.now() + 218e6), allDay: !0, classNames: "bg-primary" },
-    { id: 3, title: "Meeting with developer", start: new Date(l.now() + 418e6), classNames: "bg-danger" },
-    { id: 4, title: "Design proposal", start: new Date(l.now() + 718e6), allDay: !0, classNames: "bg-info" },
-    { id: 5, title: "Web design", start: new Date(l.now() + 818e6), classNames: "bg-warning" },
-    { id: 6, title: "Cash out", start: new Date(l.now() + 1018e6), allDay: true, classNames: "bg-secondary" },
-    { id: 7, title: "Online Meeting", start: new Date(l.now() + 1218e6), classNames: "bg-success" },
-    { id: 8, title: "Conference", start: new Date(l.now() + 418e6), allDay: !0, classNames: "bg-primary" },
-  ];
+  currentEvents.value = calenderStore.holidays;
 
+  // calendarOptions.value.events = calenderStore.holidays
   calendarOptions.value.events = currentEvents.value
+
+  // var containerEl = document.getElementById('external-events');
+  // new Draggable(containerEl, {
+  //   itemSelector: '.fc-event',
+  //   eventData: function (eventEl) {
+  //     return {
+  //       title: eventEl.innerText
+  //     };
+  //   }
+  // });
 
 });
 
@@ -133,7 +135,7 @@ onUpdated(() => {
 
 <template>
   <div class="row">
-    <div class="col-xxl-9 col-lg-8">
+    <div class="col-xxl-12 col-lg-12">
       <div class="panel">
         <div class="panel-body">
           <div class="calendar">
@@ -142,34 +144,34 @@ onUpdated(() => {
         </div>
       </div>
     </div>
-    <div class="col-xxl-3 col-lg-4 calendar-sidebar">
-      <div class="panel mb-25">
-        <div class="panel-header">
-          <h5>Reserved Event</h5>
-        </div>
-        <div class="panel-body">
-          <div id="external-events" class="sidebar-event-list">
-            <div class="fc-event">My Event 1</div>
-            <div class="fc-event">My Event 2</div>
-            <div class="fc-event">My Event 3</div>
-            <div class="fc-event">My Event 4</div>
-            <div class="fc-event">My Event 5</div>
-          </div>
-        </div>
-      </div>
-      <div class="panel">
-        <div class="panel-header">
-          <h5>Upcoming Events</h5>
-        </div>
-        <div class="panel-body">
-          <div class="upcoming-event-list sidebar-event-list">
-            <div v-for="event in currentEvents" href="javascript:void(0)" class="p-1 my-1 rounded fc-event" :class="event.classNames">
-              {{ event.title }}
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<!--    <div class="col-xxl-3 col-lg-4 calendar-sidebar">-->
+<!--      <div class="panel mb-25">-->
+<!--        <div class="panel-header">-->
+<!--          <h5>Reserved Event</h5>-->
+<!--        </div>-->
+<!--        <div class="panel-body">-->
+<!--          <div id="external-events" class="sidebar-event-list">-->
+<!--            <div class="fc-event">My Event 1</div>-->
+<!--            <div class="fc-event">My Event 2</div>-->
+<!--            <div class="fc-event">My Event 3</div>-->
+<!--            <div class="fc-event">My Event 4</div>-->
+<!--            <div class="fc-event">My Event 5</div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--      <div class="panel">-->
+<!--        <div class="panel-header">-->
+<!--          <h5>Upcoming Events</h5>-->
+<!--        </div>-->
+<!--        <div class="panel-body">-->
+<!--          <div class="upcoming-event-list sidebar-event-list">-->
+<!--            <div v-for="event in currentEvents" href="javascript:void(0)" class="p-1 my-1 rounded fc-event" :class="event.classNames">-->
+<!--              {{ event.title }}-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
   </div>
   <ModalWindow>
     <EventModalComponent
