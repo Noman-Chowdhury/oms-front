@@ -12,7 +12,10 @@ export const useCompanyStore = defineStore('company', {
     state: () => ({
         companies: [],
         loading: false,
-        company: {}
+        company: {},
+        otherInfo: {
+            weekly_holiday: []
+        }
     }),
     actions: {
         async fetchCompanies() {
@@ -60,7 +63,70 @@ export const useCompanyStore = defineStore('company', {
                 console.error('Error approving company:', error);
             }
             this.loading = false;
-        }
+        },
+        async updateCompanyInfo() {
+            try {
+                this.loading = true;
+                await userAxiosInstance.put(`/update-my-company-info`, this.company)
+                    .then((response) => {
+                        $toast.success(response.data.message)
+                    }).catch((error) => {
+                        if (error.response && error.response.status === 422) {
+                            const errors = error.response.data.errors;
+                            for (const field in errors) {
+                                if (errors.hasOwnProperty(field)) {
+                                    $toast.error(errors[field][0]);
+                                }
+                            }
+
+                        } else {
+                            $toast.error('Something went wrong!.');
+                            console.error('An error occurred:', error);
+                        }
+                    });
+            } catch (error) {
+                console.error('Error approving company:', error);
+            }
+            this.loading = false;
+        },
+        async updateCompanySettigs() {
+            try {
+                this.loading = true;
+                await userAxiosInstance.put(`/update-my-company-settings`, this.otherInfo)
+                    .then((response) => {
+                        $toast.success(response.data.message)
+                    }).catch((error) => {
+                        if (error.response && error.response.status === 422) {
+                            const errors = error.response.data.errors;
+                            for (const field in errors) {
+                                if (errors.hasOwnProperty(field)) {
+                                    $toast.error(errors[field][0]);
+                                }
+                            }
+
+                        } else {
+                            $toast.error('Something went wrong!.');
+                            console.error('An error occurred:', error);
+                        }
+                    });
+            } catch (error) {
+                console.error('Error approving company:', error);
+            }
+            this.loading = false;
+        },
+        async fetchCompanySettings() {
+            try {
+                this.loading = true;
+                await userAxiosInstance.get(`/my-company-settings`)
+                    .then((response) => {
+                        const resData = response.data
+                        this.otherInfo = resData.data.info
+                    });
+            } catch (error) {
+                console.error('Error approving company:', error);
+            }
+            this.loading = false;
+        },
 
     }
 });

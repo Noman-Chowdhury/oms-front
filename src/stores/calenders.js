@@ -12,6 +12,13 @@ export const useCalenderStore = defineStore('calender', {
     state: () => ({
         holidays: [],
         loading: false,
+        postData:{
+            title:null,
+            start_date: null,
+            end_date: null,
+            is_new: false,
+            holiday_id: null
+        }
     }),
     actions: {
         async fetchHolidays() {
@@ -20,6 +27,15 @@ export const useCalenderStore = defineStore('calender', {
                 .then((response) => {
                     const resData = response.data
                     this.holidays = resData.data.lists
+                })
+            this.loading = false;
+        },
+        async storeOrUpdateHoliday() {
+            this.loading = true;
+            await userAxiosInstance.post('/holidays',this.postData)
+                .then((response) => {
+                    const resData = response.data
+                    $toast.success(resData.message)
                 })
             this.loading = false;
         },

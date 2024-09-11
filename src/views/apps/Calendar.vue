@@ -105,30 +105,20 @@ const addNewEvent = ((payload) => {
 
 })
 
-onMounted(() => {
+onMounted(async () => {
 
   initCalendar();
-  calenderStore.fetchHolidays()
+  await calenderStore.fetchHolidays()
 
 
-  currentEvents.value = calenderStore.holidays;
+  currentEvents.value = calenderStore.holidays.filter(holiday => holiday.has_company);
 
-  // calendarOptions.value.events = calenderStore.holidays
   calendarOptions.value.events = currentEvents.value
 
-  // var containerEl = document.getElementById('external-events');
-  // new Draggable(containerEl, {
-  //   itemSelector: '.fc-event',
-  //   eventData: function (eventEl) {
-  //     return {
-  //       title: eventEl.innerText
-  //     };
-  //   }
-  // });
 
 });
 
-onUpdated(() => {
+onUpdated(async () =>{
   initCalendar();
 })
 </script>
