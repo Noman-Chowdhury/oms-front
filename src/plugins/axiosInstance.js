@@ -6,6 +6,7 @@ const adminAxiosInstance = axios.create({
         'Accept': 'application/json',
         'X-Requested-With': 'XMLHttpRequest',
         'Access-Control-Allow-Origin': '*',
+        'Requester': 'web',
         Authorization: `Bearer ${localStorage.getItem('_a_t')}`
     }
 });
@@ -16,6 +17,7 @@ const userAxiosInstance = axios.create({
         'Accept': 'application/json',
         'X-Requested-With': 'XMLHttpRequest',
         'Access-Control-Allow-Origin': '*',
+        'Requester': 'web',
         Authorization: `Bearer ${localStorage.getItem('_u_t')}`
     }
 });
@@ -26,6 +28,7 @@ const axiosInstance = axios.create({
         'Accept': 'application/json',
         'X-Requested-With': 'XMLHttpRequest',
         'Access-Control-Allow-Origin': '*',
+        'Requester': 'web',
     }
 });
 
