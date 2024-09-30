@@ -6,6 +6,9 @@ import {onMounted, ref} from "vue";
 import {useUserStore} from "@/stores/users";
 import Loader from "@/components/Loader.vue";
 import {useUserInfoStore} from "@/stores/userInfoStore";
+import {useRolePermissionStore} from "@/stores/rolePermission";
+import vSelect from "vue-select";
+import "vue-select/dist/vue-select.css";
 
 const table = ref(null);
 const selectedItems = ref([]);
@@ -18,6 +21,7 @@ const tableColumns = ref([
 
 const userStore = useUserStore();
 const permissionStore = useUserInfoStore()
+const roleStore = useRolePermissionStore()
 
 const submitUserForm = async () => {
   event.preventDefault()
@@ -30,6 +34,7 @@ const submitUserForm = async () => {
 
 onMounted(() => {
   userStore.fetchData()
+  roleStore.fetchData()
 })
 </script>
 
@@ -67,6 +72,18 @@ onMounted(() => {
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>
                   </select>
+                </div>
+                <div class="col-xxl-12 col-lg-12 col-sm-12">
+                  <label class="form-label">Role</label>
+                  <v-select
+                      taggable
+                      multiple
+                      label="name"
+                      :options="roleStore.roles"
+                      :reduce="role => role.id"
+                      v-model="userStore.user.roles"
+                      placeholder="Select Roles"
+                  />
                 </div>
                 <div class="col-xxl-12 col-lg-12 col-sm-12 d-flex justify-content-end" v-if="permissionStore.hasPermission('add new user') || permissionStore.hasPermission('edit user')">
                   <button class="btn btn-primary" @click="submitUserForm">Save</button>

@@ -15,7 +15,8 @@ export const useUserStore = defineStore('user', {
         user: {
             name: '',
             email: '',
-            status: 'active'
+            status: 'active',
+            roles: []
         },
         userId: null
     }),
