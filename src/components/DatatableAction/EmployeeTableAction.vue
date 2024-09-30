@@ -3,7 +3,9 @@ import {defineProps} from 'vue';
 import Swal from "sweetalert2";
 import {useEmployeeStore} from "@/stores/employee";
 import {useRouter} from "vue-router";
+import {useUserInfoStore} from "@/stores/userInfoStore";
 
+const userStore = useUserInfoStore()
 const props = defineProps({
   employee: {
     type: Object,
@@ -44,8 +46,8 @@ const handleDelete = () => {
 
 <template>
   <div class="btn-box">
-    <button @click="handleView" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i></button>
-    <button @click="handleEdit" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen"></i></button>
+    <button @click="handleView" class="btn btn-sm btn-primary"  v-if="userStore.hasPermission('show employee details')"><i class="fa-solid fa-eye"></i></button>
+    <button @click="handleEdit" class="btn btn-sm btn-primary"  v-if="userStore.hasPermission('edit employee')"><i class="fa-solid fa-pen"></i></button>
 <!--    <button @click="handleDelete" class="btn btn-sm btn-primary"><i class="fa-solid fa-trash"></i></button>-->
   </div>
 </template>

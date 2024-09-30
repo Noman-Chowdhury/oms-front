@@ -5,6 +5,7 @@ import TableFilterOption from "@/components/datatable/TableFilterOption.vue";
 import {onMounted, ref} from "vue";
 import {useUserStore} from "@/stores/users";
 import Loader from "@/components/Loader.vue";
+import {useUserInfoStore} from "@/stores/userInfoStore";
 
 const table = ref(null);
 const selectedItems = ref([]);
@@ -16,6 +17,7 @@ const tableColumns = ref([
 ]);
 
 const userStore = useUserStore();
+const permissionStore = useUserInfoStore()
 
 const submitUserForm = async () => {
   event.preventDefault()
@@ -66,14 +68,14 @@ onMounted(() => {
                     <option value="inactive">Inactive</option>
                   </select>
                 </div>
-                <div class="col-xxl-12 col-lg-12 col-sm-12 d-flex justify-content-end">
+                <div class="col-xxl-12 col-lg-12 col-sm-12 d-flex justify-content-end" v-if="permissionStore.hasPermission('add new user') || permissionStore.hasPermission('edit user')">
                   <button class="btn btn-primary" @click="submitUserForm">Save</button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-8">
+        <div class="col-8" v-if="permissionStore.hasPermission('show user list')">
           <div class="panel">
             <div class="panel-header">
               <h5>

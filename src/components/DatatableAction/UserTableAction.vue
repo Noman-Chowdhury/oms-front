@@ -2,6 +2,7 @@
 import {defineProps} from 'vue';
 import Swal from "sweetalert2";
 import {useUserStore} from "@/stores/users";
+import {useUserInfoStore} from "@/stores/userInfoStore";
 
 const props = defineProps({
   user: {
@@ -9,6 +10,8 @@ const props = defineProps({
     required: true
   }
 });
+
+const permissionStore = useUserInfoStore()
 
 const userStore = useUserStore();
 
@@ -37,8 +40,8 @@ const handleDelete = () => {
 
 <template>
   <div class="btn-box">
-    <button @click="handleEdit" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen"></i></button>
-    <button @click="handleDelete" class="btn btn-sm btn-primary"><i class="fa-solid fa-trash"></i></button>
+    <button @click="handleEdit" class="btn btn-sm btn-primary" v-if="permissionStore.hasPermission('edit user')"><i class="fa-solid fa-pen"></i></button>
+    <button @click="handleDelete" class="btn btn-sm btn-primary" v-if="permissionStore.hasPermission('delete user')"><i class="fa-solid fa-trash"></i></button>
   </div>
 </template>
 

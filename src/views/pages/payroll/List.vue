@@ -50,7 +50,7 @@ onMounted(() => {
           <h5>
             Payroll List
           </h5>
-          <router-link :to="{ name: 'payrolls_create' }" class="btn btn-sm btn-primary"><i class="fa-light fa-plus"></i> Add New</router-link>
+          <router-link :to="{ name: 'payrolls_create' }" class="btn btn-sm btn-primary" v-if="!userInfoStore.user.is_employee && userInfoStore.hasPermission('add new payroll')"><i class="fa-light fa-plus"></i> Add New</router-link>
         </div>
         <div class="panel-body">
           <data-table

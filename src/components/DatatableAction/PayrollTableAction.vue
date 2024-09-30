@@ -56,7 +56,7 @@ const closePreview = () => {
   <div class="btn-box">
 <!--    <button @click="handleEdit" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen"></i>-->
 <!--    </button>-->
-    <button @click="handlePreview" class="btn btn-sm btn-primary"><i class="fa-solid fa-eye"></i>11
+    <button @click="handlePreview" class="btn btn-sm btn-primary" v-if="userInfoStore.hasPermission('show payroll details')"><i class="fa-solid fa-eye"></i>
     </button>
 <!--    <button @click="handleDelete" class="btn btn-sm btn-primary"><i-->
 <!--        class="fa-solid fa-trash"></i></button>-->

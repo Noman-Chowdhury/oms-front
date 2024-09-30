@@ -2,6 +2,7 @@
 import {defineProps} from 'vue';
 import {designationStore} from "@/stores/designation";
 import Swal from "sweetalert2";
+import {useUserInfoStore} from "@/stores/userInfoStore";
 
 const props = defineProps({
   designation: {
@@ -11,6 +12,7 @@ const props = defineProps({
 });
 
 const desStore = designationStore();
+const permissionStore = useUserInfoStore()
 
 const handleEdit = () => {
   desStore.designationId = props.designation.id
@@ -37,8 +39,8 @@ const handleDelete = () => {
 
 <template>
   <div class="btn-box">
-    <button @click="handleEdit" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen"></i></button>
-    <button @click="handleDelete" class="btn btn-sm btn-primary"><i class="fa-solid fa-trash"></i></button>
+    <button @click="handleEdit" class="btn btn-sm btn-primary"  v-if="permissionStore.hasPermission('edit designation')"><i class="fa-solid fa-pen"></i></button>
+    <button @click="handleDelete" class="btn btn-sm btn-primary"  v-if="permissionStore.hasPermission('delete designation')"><i class="fa-solid fa-trash"></i></button>
   </div>
 </template>
 

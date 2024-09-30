@@ -27,7 +27,7 @@ const login = async () => {
     userAxiosInstance.post('/login', credentials.value)
         .then((response) => {
           const resData = response.data;
-          userStore.setUser(resData.data.userData, resData.data.access_token, 'user');
+          userStore.setUser(resData.data.userData, resData.data.access_token, 'user', resData.data?.permissions);
           $toast.success(resData.message);
           router.push({name: 'dashboard_index'})
         }).catch((error) => {

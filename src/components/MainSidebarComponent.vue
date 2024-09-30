@@ -14,11 +14,13 @@ import {currentNavbarSize, hoverableMenu, hoverableSidebar, hoverableOutSidebar}
 
 import {layoutPosition} from "@/composable/navPositionSetting";
 import {useI18n} from 'vue-i18n'
+import {useUserInfoStore} from "@/stores/userInfoStore";
 
 const {t} = useI18n()
 const route = useRoute();
 const currentRoute = ref('');
 const isSubmenus = ref(false);
+const userInfoStore = useUserInfoStore()
 
 const openedMenu = ref(null);
 let sidebarMenus = null
@@ -140,36 +142,39 @@ onMounted(() => {
                 :id="[horizontalMenuEnabled ? 'AppDropDownId'+index : `collapseExample-${index}`]"
                 data-bs-parent="#testAccordionExample">
               <li v-for="(menu, mIndex) in sidebar.menus" class="sidebar-dropdown-item">
-                <template v-if="menu.link_name">
-                  <router-link :to="{ name: `${menu.link_name}` }" class="sidebar-link"
-                               :class="{active : currentRoute === menu.link_name }">
-                    <span class="nav-icon"><i :class="menu.icon"></i></span> <span class="sidebar-txt">{{
-                      $t(menu.name)
-                    }}</span>
-                  </router-link>
-                </template>
-                <template v-if="menu.sub_menus">
-                  <template v-if="horizontalMenuEnabled">
-                    <a role="button" class="sidebar-link has-sub" :id="'parentSubDropdownMenu'+index"
-                       data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
-                      <span v-if="menu.icon" class="nav-icon"><i :class="menu.icon"></i></span> <span
-                        class="sidebar-txt">{{ $t(menu.name) }}</span>
-                    </a>
+                <div v-if="!menu.permissions || (menu.permissions && userInfoStore.hasPermission(menu.permissions))">
+                  <template v-if="menu.link_name">
+                    <router-link :to="{ name: `${menu.link_name}` }" class="sidebar-link"
+                                 :class="{active : currentRoute === menu.link_name }">
+                      <span class="nav-icon"><i :class="menu.icon"></i></span> <span class="sidebar-txt">{{
+                        $t(menu.name)
+                      }}</span>
+                    </router-link>
                   </template>
-                  <template v-else>
-                    <a role="button" class="sidebar-link has-sub" data-bs-toggle="collapse"
-                       :href="`#subCollapseMenu-${mIndex}-${index}`" aria-expanded="false"
-                       :aria-controls="`subCollapseMenu-${mIndex}-${index}`" @click="findMenuByName(menu.name)">
-                      <span v-if="menu.icon" class="nav-icon"><i :class="menu.icon"></i></span> <span
-                        class="sidebar-txt">{{ $t(menu.name) }}</span>
-                    </a>
+                  <template v-if="menu.sub_menus">
+                    <template v-if="horizontalMenuEnabled">
+                      <a role="button" class="sidebar-link has-sub" :id="'parentSubDropdownMenu'+index"
+                         data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">
+                        <span v-if="menu.icon" class="nav-icon"><i :class="menu.icon"></i></span> <span
+                          class="sidebar-txt">{{ $t(menu.name) }}</span>
+                      </a>
+                    </template>
+                    <template v-else>
+                      <a role="button" class="sidebar-link has-sub" data-bs-toggle="collapse"
+                         :href="`#subCollapseMenu-${mIndex}-${index}`" aria-expanded="false"
+                         :aria-controls="`subCollapseMenu-${mIndex}-${index}`" @click="findMenuByName(menu.name)">
+                        <span v-if="menu.icon" class="nav-icon"><i :class="menu.icon"></i></span> <span
+                          class="sidebar-txt">{{ $t(menu.name) }}</span>
+                      </a>
+                    </template>
                   </template>
-                </template>
+                </div>
                 <ul v-click-outside="closeToggleMenu" class="sidebar-dropdown-menu collapse"
                     :class="[horizontalMenuEnabled ? 'dropdown-menu' : '', openedMenu === menu.name ? 'd-block' : '', (layoutPosition === 'twoColumn' && index === 1) ? 'show' : '']"
                     :id="[horizontalMenuEnabled ? `subDropDownId-${mIndex}-${index}` : `subCollapseMenu-${mIndex}-${index}`]"
                     :aria-labelledby="[horizontalMenuEnabled ? `parentSubDropdownMenu-${mIndex}-${index}`  : '']">
                   <li v-for="(sub_menu, sIndex) in menu.sub_menus" class="sidebar-dropdown-item">
+                    <div v-if="!sub_menu.permissions || (sub_menu.permissions && userInfoStore.hasPermission(sub_menu.permissions))">
                     <template v-if="sub_menu.link_name">
                       <router-link :to="{ name: `${sub_menu.link_name}` }" class="sidebar-link"
                                    :class="{active : currentRoute === sub_menu.link_name }">
@@ -215,6 +220,7 @@ onMounted(() => {
                         :isCollapsed="isCollapsed"
                         :closeAllDropdownMenu="closeAllDropdownMenu"
                     />
+                    </div>
                   </li>
                 </ul>
               </li>

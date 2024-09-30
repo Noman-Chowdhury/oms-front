@@ -7,6 +7,7 @@ import {designationStore} from "@/stores/designation";
 import {useDepartmentStore} from "@/stores/department";
 import {useShiftStore} from "@/stores/shift";
 import {useLeaveTypeStore} from "@/stores/leaveTypes";
+import {useUserInfoStore} from "@/stores/userInfoStore";
 
 const desTable = ref(null);
 const depTable = ref(null);
@@ -35,6 +36,7 @@ const desStore = designationStore()
 const depStore = useDepartmentStore()
 const shiftStore = useShiftStore()
 const leaveTypeStore = useLeaveTypeStore()
+const permissionStore = useUserInfoStore()
 
 const submitDepartmentForm = async () => {
   event.preventDefault()
@@ -105,7 +107,7 @@ onMounted(() => {
                     <option value="inactive">Inactive</option>
                   </select>
                 </div>
-                <div class="col-xxl-12 col-lg-12 col-sm-12 d-flex justify-content-end">
+                <div class="col-xxl-12 col-lg-12 col-sm-12 d-flex justify-content-end"  v-if="permissionStore.hasPermission('add new department') || permissionStore.hasPermission('edit department')">
                   <button class="btn btn-primary" @click="submitDepartmentForm">Save</button>
                 </div>
               </div>
@@ -170,7 +172,7 @@ onMounted(() => {
                     <option value="inactive">Inactive</option>
                   </select>
                 </div>
-                <div class="col-xxl-12 col-lg-12 col-sm-12 d-flex justify-content-end">
+                <div class="col-xxl-12 col-lg-12 col-sm-12 d-flex justify-content-end"  v-if="permissionStore.hasPermission('add new designation') || permissionStore.hasPermission('edit designation')">
                   <button class="btn btn-primary" @click="submitDesignationForm">Save</button>
                 </div>
               </div>
@@ -243,7 +245,7 @@ onMounted(() => {
                     <option value="inactive">Inactive</option>
                   </select>
                 </div>
-                <div class="col-xxl-12 col-lg-12 col-sm-12 d-flex justify-content-end">
+                <div class="col-xxl-12 col-lg-12 col-sm-12 d-flex justify-content-end"  v-if="permissionStore.hasPermission('add new shift') || permissionStore.hasPermission('edit shift')">
                   <button class="btn btn-primary" @click="submitShiftForm">Save</button>
                 </div>
               </div>
@@ -308,7 +310,7 @@ onMounted(() => {
                     <option value="inactive">Inactive</option>
                   </select>
                 </div>
-                <div class="col-xxl-12 col-lg-12 col-sm-12 d-flex justify-content-end">
+                <div class="col-xxl-12 col-lg-12 col-sm-12 d-flex justify-content-end"   v-if="permissionStore.hasPermission('add new leave type') || permissionStore.hasPermission('edit leave type')">
                   <button class="btn btn-primary" @click="submitLeaveTypeForm">Save</button>
                 </div>
               </div>

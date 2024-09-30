@@ -68,6 +68,25 @@ export const pagesRoutes = [
         meta: {layout: 'AppLayout', isPartials: true, isUser: true},
     },
     {
+        path: '/roles',
+        component: () => import('@/views/pages/role/Index.vue'),
+        name: 'roles',
+        meta: {layout: 'AppLayout', isPartials: true, isUser: true},
+    },
+    {
+        path: '/roles/create',
+        component: () => import('@/views/pages/role/Add.vue'),
+        name: 'role_create',
+        meta: {layout: 'AppLayout', isPartials: true, isUser: true},
+    },
+    {
+        path: '/roles/edit/:roleId',
+        component: () => import('@/views/pages/role/Edit.vue'),
+        name: 'role_edit',
+        meta: {layout: 'AppLayout', isPartials: true, isUser: true},
+        props: true,
+    },
+    {
         path: '/hrm-dashboard',
         component: () => import('@/views/dashboard/HrmDashboard.vue'),
         name: 'hrm_dashboard',

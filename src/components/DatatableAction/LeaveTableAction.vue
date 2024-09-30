@@ -81,10 +81,10 @@ const handleReject = () => {
             v-if="userInfoStore.user.is_employee && props.leave.status === 'In Review'"><i
         class="fa-solid fa-trash"></i></button>
     <button @click="handleReject" class="btn btn-sm btn-primary"
-            v-if="!userInfoStore.user.is_employee && props.leave.status === 'In Review'"><i
+            v-if="!userInfoStore.user.is_employee && props.leave.status === 'In Review' && userInfoStore.hasPermission('leave application approval')"><i
         class="fa-solid fa-times-circle"></i></button>
     <button @click="handleApprove" class="btn btn-sm btn-primary"
-            v-if="!userInfoStore.user.is_employee && props.leave.status === 'In Review'"><i
+            v-if="!userInfoStore.user.is_employee && props.leave.status === 'In Review' && userInfoStore.hasPermission('leave application approval')"><i
         class="fa-solid fa-check-circle"></i></button>
   </div>
 </template>

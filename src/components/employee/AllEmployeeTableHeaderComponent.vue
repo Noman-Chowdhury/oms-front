@@ -1,5 +1,7 @@
 <script setup>
+import {useUserInfoStore} from "@/stores/userInfoStore";
 
+const userStore = useUserInfoStore()
 </script>
 
 <template>
@@ -72,7 +74,7 @@
       </li>
     </ul>
   </div>
-  <router-link :to="{ name: 'hrm_add_employee' }" class="btn btn-sm btn-primary"><i class="fa-light fa-plus"></i> Add New</router-link>
+  <router-link :to="{ name: 'hrm_add_employee' }" class="btn btn-sm btn-primary" v-if="userStore.hasPermission('add new user')"><i class="fa-light fa-plus"></i> Add New</router-link>
 </template>
 
 <style scoped>

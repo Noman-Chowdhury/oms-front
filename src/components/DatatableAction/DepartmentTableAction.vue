@@ -2,6 +2,7 @@
 import {defineProps} from 'vue';
 import Swal from "sweetalert2";
 import {useDepartmentStore} from "@/stores/department";
+import {useUserInfoStore} from "@/stores/userInfoStore";
 
 const props = defineProps({
   department: {
@@ -11,6 +12,7 @@ const props = defineProps({
 });
 
 const store = useDepartmentStore();
+const permissionStore = useUserInfoStore()
 
 const handleEdit = () => {
   store.departmentId = props.department.id
@@ -37,8 +39,8 @@ const handleDelete = () => {
 
 <template>
   <div class="btn-box">
-    <button @click="handleEdit" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen"></i></button>
-    <button @click="handleDelete" class="btn btn-sm btn-primary"><i class="fa-solid fa-trash"></i></button>
+    <button @click="handleEdit" class="btn btn-sm btn-primary" v-if="permissionStore.hasPermission('edit department')">><i class="fa-solid fa-pen"></i></button>
+    <button @click="handleDelete" class="btn btn-sm btn-primary" v-if="permissionStore.hasPermission('delete department')">><i class="fa-solid fa-trash"></i></button>
   </div>
 </template>
 

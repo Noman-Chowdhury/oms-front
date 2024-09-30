@@ -122,7 +122,6 @@ export const useEmployeeStore = defineStore('employee', {
                 await userAxiosInstance.get(`/employees/${this.employeeId}`)
                     .then((response) => {
                         const resData = response.data
-                        console.log(resData.data.info)
                         this.employee = resData.data.info
                     })
             } catch (error) {

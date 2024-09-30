@@ -7,6 +7,7 @@ import flatPickr from 'vue-flatpickr-component';
 import 'flatpickr/dist/flatpickr.css';
 import * as bootstrap from "bootstrap";
 import ModalWindow from "@/components/ModalWindow.vue";
+import {useUserInfoStore} from "@/stores/userInfoStore";
 
 const days = ref([
   'Friday', 'Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'
@@ -55,6 +56,7 @@ const days_between = (start, end) => {
 
 const companyStore = useCompanyStore()
 const holidayStore = useCalenderStore()
+const permissionStore = useUserInfoStore()
 
 const updateBasicSettings = async () => {
   event.preventDefault()
@@ -89,7 +91,7 @@ onMounted(() => {
   <div class="row">
     <div class="col-12">
       <div class="row d-flex align-items-stretch">
-        <div class="col-md-12">
+        <div class="col-md-12"  v-if="permissionStore.hasPermission('update company basic settings')">
           <div class="panel">
             <div class="panel-header">
               <h5>
@@ -175,7 +177,7 @@ onMounted(() => {
             </div>
           </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12" v-if="permissionStore.hasPermission('update company general settings')">
           <div class="panel">
             <div class="panel-header">
               <h5>
@@ -209,7 +211,7 @@ onMounted(() => {
             </div>
           </div>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12" v-if="permissionStore.hasPermission('update company holiday settings')">
           <div class="panel">
             <div class="panel-header">
               <h5>

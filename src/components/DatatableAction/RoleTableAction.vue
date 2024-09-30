@@ -2,20 +2,25 @@
 import {defineProps} from 'vue';
 import Swal from "sweetalert2";
 import {useShiftStore} from "@/stores/shift";
+import {useLeaveStore} from "@/stores/leave";
 import {useUserInfoStore} from "@/stores/userInfoStore";
+import {useRolePermissionStore} from "@/stores/rolePermission";
+import {useRouter} from "vue-router";
 
 const props = defineProps({
-  shift: {
+  role: {
     type: Object,
     required: true
   }
 });
 
-const store = useShiftStore();
-const permissionStore = useUserInfoStore()
+const store = useRolePermissionStore();
+const userInfoStore = useUserInfoStore()
+const router = useRouter()
 const handleEdit = () => {
-  store.shiftId = props.shift.id
-  store.shift = props.shift
+  store.roleId = props.role.id
+  store.role = props.role
+  router.push('roles/edit/' + props.role.id)
 };
 
 const handleDelete = () => {
@@ -29,17 +34,20 @@ const handleDelete = () => {
     confirmButtonText: "Yes, delete it!"
   }).then((result) => {
     if (result.isConfirmed) {
-      store.shiftId = props.shift.id
-      store.deleteShift()
+      store.roleId = props.role.id
+      store.deleteData()
     }
   });
 };
+
 </script>
 
 <template>
   <div class="btn-box">
-    <button @click="handleEdit" class="btn btn-sm btn-primary" v-if="permissionStore.hasPermission('edit shift')"><i class="fa-solid fa-pen"></i></button>
-    <button @click="handleDelete" class="btn btn-sm btn-primary" v-if="permissionStore.hasPermission('delete shift')"><i class="fa-solid fa-trash"></i></button>
+    <button @click="handleEdit" class="btn btn-sm btn-primary"><i class="fa-solid fa-pen"></i>
+    </button>
+    <button @click="handleDelete" class="btn btn-sm btn-primary"><i
+        class="fa-solid fa-trash"></i></button>
   </div>
 </template>
 

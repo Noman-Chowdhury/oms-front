@@ -113,7 +113,7 @@ onMounted(() => {
         </div>
       </div>
     </div>
-    <div class="col-12">
+    <div class="col-12" v-if="userInfoStore.hasPermission('leave application list')">
       <div class="panel">
         <div class="panel-header">
           <h5>
